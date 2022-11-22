@@ -7,35 +7,35 @@
 
 import Foundation
 
-
-struct Welcome {
-    let category: String
-    let data: [News]
-    let success: Bool
+struct NewsPage: Codable {
+    let data: [News]?
+    
+    init(newsPageData: [String: Any]) {
+        let data = newsPageData["data"] as? [[String: Any]] ?? []
+        self.data = data.compactMap { News(newsData: $0) }
+    }
+    static func getNewsPage(from value: Any) -> NewsPage? {
+        guard let data = value as? [String: Any] else { return nil }
+        return NewsPage(newsPageData: data)
+    }
 }
 
-struct News {
-    let author: String
-    let content: String
-    let date: String
-    let imageURL: String
-    let readMoreURL: String
-    let time, title: String
-    let url: String
+struct News: Codable {
+    let author: String?
+    let content: String?
+    let date: String?
+    let imageUrl: String?
+    let readMoreUrl: String?
+    let title: String?
+    
+    init(newsData: [String: Any]) {
+        author = newsData["author"] as? String
+        content = newsData["content"] as? String
+        date = newsData["date"] as? String
+        imageUrl = newsData["imageUrl"] as? String
+        readMoreUrl = newsData["readMoreUrl"] as? String
+        title = newsData["title"] as? String
+    }
 }
 
-enum Link: String {
-    case all = "https://inshorts.deta.dev/news?category=all"
-    case national = "https://inshorts.deta.dev/news?category=national"
-    case business = "https://inshorts.deta.dev/news?category=business"
-    case sports = "https://inshorts.deta.dev/news?category=sports"
-    case world = "https://inshorts.deta.dev/news?category=world"
-    case politics = "https://inshorts.deta.dev/news?category=politics"
-    case technology = "https://inshorts.deta.dev/news?category=technology"
-    case startup = "https://inshorts.deta.dev/news?category=startup"
-    case entertainment = "https://inshorts.deta.dev/news?category=entertainment"
-    case miscellaneous = "https://inshorts.deta.dev/news?category=miscellaneous"
-    case hatke = "https://inshorts.deta.dev/news?category=hatke"
-    case science = "https://inshorts.deta.dev/news?category=science"
-    case automobile = "https://inshorts.deta.dev/news?category=automobile"
-}
+
