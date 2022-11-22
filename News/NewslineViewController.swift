@@ -11,11 +11,9 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     
-    var categoryUrl: String = "https://inshortsapi.vercel.app/news?category=all"
+    var categoryUrl: String!
     
-//    private var newsPage: NewsPage?
     var news: [News] = []
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,40 +47,23 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
-
     
     private func setupTableView() {
-        tableView.rowHeight = 115 
+        tableView.rowHeight = 115
         view.addSubview(tableView)
         tableView.register(NewslineCell.self, forCellReuseIdentifier: NewslineCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }
-
 }
 
 // MARK: - Networking
 extension NewslineViewController {
     private func fetchNews(from url: String) {
-//        let activityIndicator = showSpinner(in: tableView)
         NetworkManager.shared.fetchData(from: url) { NewsPage in
             self.news = NewsPage.data ?? []
             self.tableView.reloadData()
-//            activityIndicator.stopAnimating()
         }
         
     }
-//    func fetchNews() {
-//        NetworkManager.shared.fetch(dataType: [News].self, from: categoryUrl) { result in
-//            switch result {
-//            case .success(let news):
-//                self.news = news
-////                self.newsCategory = newsCategory
-//                self.tableView.reloadData()
-//                print(news)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
 }

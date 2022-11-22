@@ -12,16 +12,31 @@ import SnapKit
 class NewslineCell: UITableViewCell {
     static let identifier = "newslineCell"
     
+    private var imageURL: URL? {
+        didSet {
+            imageView?.image = nil
+            updateImage()
+        }
+    }
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .systemGray
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+                
+        return activityIndicator
+    }()
+    
     private let nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "sad"
+        nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
     private let dateLabel: UILabel = {
         let dateLabel = UILabel()
-        dateLabel.text = "date"
-//        dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
+        dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
         return dateLabel
     }()
     
@@ -35,7 +50,6 @@ class NewslineCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
-//        contentView.backgroundColor = .systemGray5
         contentView.addSubview(nameLabel)
         
     }
@@ -44,40 +58,29 @@ class NewslineCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with news: News) {
-        nameLabel.text = news.title
-        dateLabel.text = news.date
-        
-        NetworkManager.shared.fetchImage(from: news.imageUrl) { imageData in
-            self.newsImage.image = UIImage(data: imageData)
-        }
-        
-//        NetworkManager.shared.fetchImage(from: news.imageUrl ?? "") { result in
-//            switch result {
-//            case .success(let imageData):
-//                self.newsImage.image = UIImage(data: imageData)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = nil
         dateLabel.text = nil
-//        newsImage.image = UIImage(systemName: "plus")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.addSubview(newsImage)
-        newsImage.snp.makeConstraints { make in
+        contentView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(6)
-            make.width.equalTo(contentView.frame.height)
-            make.height.equalTo(contentView.frame.height)
+            make.width.equalTo(contentView.frame.height-8)
+            make.height.equalTo(contentView.frame.height-8)
+        }
+        
+        contentView.addSubview(newsImage)
+        newsImage.snp.makeConstraints { make in
+            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top).offset(4)
+            make.leading.equalToSuperview().offset(6)
+            make.width.equalTo(contentView.frame.height-8)
+            make.height.equalTo(contentView.frame.height-8)
         }
         
         contentView.addSubview(nameLabel)
@@ -95,20 +98,45 @@ class NewslineCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(contentView.frame.height / 3)
         }
-        
     }
     
-    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .systemGray
-        activityIndicator.startAnimating()
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
+    func configure(with news: News) {
+        nameLabel.text = news.title
+        dateLabel.text = news.date
         
-        view.addSubview(activityIndicator)
-        
-        return activityIndicator
+        imageURL = URL(string: news.imageUrl ?? "")
     }
+    
+    private func updateImage() {
+        guard let imageURL = imageURL else { return }
+        getImage(from: imageURL) { result in
+            switch result {
+            case .success(let image):
+                if imageURL == self.imageURL {
+                    self.newsImage.image = image
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getImage(from url: URL, completion : @escaping(Result<UIImage, Error>) -> Void) {
+        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
+            completion(.success(cacheImage))
+            return
+        }
         
-   
+        NetworkManager.shared.fetchImage(from: url) { result in
+            switch result {
+            case .success(let imageData):
+                guard let image = UIImage(data: imageData) else { return }
+                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+                completion(.success(image))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

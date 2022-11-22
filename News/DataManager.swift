@@ -13,18 +13,18 @@ struct DataManager {
     let category = Category.allCases
    
     private init() {}
-    
-    enum Category: String, CaseIterable {
-        case all = "All"
-        case business = "Business"
-        case sports = "Sport"
-        case world = "World"
-        case politics = "Politics"
-        case technology = "Technology"
-        case startup = "Start up"
-        case entertainment = "Entertainment"
-        case miscellaneous = "Miscellaneous"
-        case science = "Science"
-        case automobile = "Automobile"
-    }
+}
+
+enum Category: String, CaseIterable {
+    case all = "All"
+    case business = "Business"
+    case sports = "Sport"
+    case world = "World"
+    case politics = "Politics"
+    case technology = "Technology"
+    case startup = "Start up"
+    case entertainment = "Entertainment"
+    case miscellaneous = "Miscellaneous"
+    case science = "Science"
+    case automobile = "Automobile"
 }

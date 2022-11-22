@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Alamofire
-
 
 class NetworkManager {
     
@@ -17,7 +15,7 @@ class NetworkManager {
     
     func fetchData(from url: String?, with completion: @escaping(NewsPage) -> Void) {
         guard let url = URL(string: url ?? "") else { return }
-        
+
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "No error description")
@@ -34,19 +32,39 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchImage(from url: String?, with completion: @escaping(Data) -> Void) {
-        guard let stringUrl = url else { return }
-        guard let imageUrl = URL(string: stringUrl) else { return }
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: imageUrl) else { return }
-            DispatchQueue.main.async {
-                completion(data)
+    func fetchImage(from url: URL, completion: @escaping(Result<Data, NetworkError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
             }
-        }
+            DispatchQueue.main.async {
+                completion(.success(data))
+            }
+        }.resume()
     }
-    
-    
 }
+
+enum NetworkError: Error {
+    case invalidURL
+    case noData
+    case decodingError
+}
+
+
+
+
+///
+//    func fetchImage(from url: String?, with completion: @escaping(Data) -> Void) {
+//        guard let stringUrl = url else { return }
+//        guard let imageUrl = URL(string: stringUrl) else { return }
+//        DispatchQueue.global().async {
+//            guard let data = try? Data(contentsOf: imageUrl) else { return }
+//            DispatchQueue.main.async {
+//                completion(data)
+//            }
+//        }
+//    }
 //
 //    func fetch<T: Decodable>(dataType: T.Type, from url: String, completion: @escaping(Result<T, NetworkError>) -> Void) {
 //        guard let url = URL(string: url) else {
@@ -87,11 +105,4 @@ class NetworkManager {
 //            }
 //        }
 //}
-//
-//enum NetworkError: Error {
-//    case invalidURL
-//    case noData
-//    case decodingError
-//}
-//
-//
+
