@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol  CategoriesInteractorInputProtocol: AnyObject {
+protocol  CategoriesInteractorInputProtocol {
     init(presenter: CategoriesInteractorOutputProtocol)
-    func provideCategoriesData()
+    func getCategories()
 }
 
 protocol CategoriesInteractorOutputProtocol: AnyObject {
-    func receiveCategoriesData(_ categories: CategoriesData)
+    func receiveCategoriesData(with categoriesData: CategoriesData)
 }
 
 class CategoriesInteractor: CategoriesInteractorInputProtocol {
@@ -23,9 +23,14 @@ class CategoriesInteractor: CategoriesInteractorInputProtocol {
         self.presenter = presenter
     }
     
-    func provideCategoriesData() {
-        //let categories = 
-    }
+//    func provideCategoriesData() {
+//        let categoriesData = DataManager.shared.category
+//        presenter.receiveCategoriesData(with: categoriesData)
+//    }
     
+    func getCategories() {
+        let categoriesData = CategoriesData(categories: DataManager.shared.category)
+        presenter.receiveCategoriesData(with: categoriesData)
+    }
     
 }

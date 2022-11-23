@@ -10,7 +10,7 @@ import Foundation
 struct DataManager {
     static let shared = DataManager()
     
-    let category = Category.allCases
+    let category = Category.allCases.map {$0.rawValue}
    
     private init() {}
 }

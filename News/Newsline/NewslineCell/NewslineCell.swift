@@ -9,13 +9,23 @@ import Foundation
 import UIKit
 import SnapKit
 
-class NewslineCell: UITableViewCell {
+protocol CellModelRepresentable {
+    var viewModel: NewslineCellViewModelProtocol? { get }
+}
+
+class NewslineCell: UITableViewCell, CellModelRepresentable {
+    var viewModel: NewslineCellViewModelProtocol? {
+        didSet {
+            updateView()
+        }
+    }
+    
     static let identifier = "newslineCell"
     
     private var imageURL: URL? {
         didSet {
             imageView?.image = nil
-            updateImage()
+//            updateImage()
         }
     }
     
@@ -100,43 +110,56 @@ class NewslineCell: UITableViewCell {
         }
     }
     
-    func configure(with news: News) {
-        nameLabel.text = news.title
-        dateLabel.text = news.date
+//    func configure(with news: News) {
+//        nameLabel.text = news.title
+//        dateLabel.text = news.date
+//        
+//        imageURL = URL(string: news.imageUrl ?? "")
+//    }
+    
+    private func updateView() {
+        guard let viewModel = viewModel as? NewslineCellViewModel else { return }
         
-        imageURL = URL(string: news.imageUrl ?? "")
-    }
-    
-    private func updateImage() {
-        guard let imageURL = imageURL else { return }
-        getImage(from: imageURL) { result in
-            switch result {
-            case .success(let image):
-                if imageURL == self.imageURL {
-                    self.newsImage.image = image
-                    self.activityIndicator.stopAnimating()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    private func getImage(from url: URL, completion : @escaping(Result<UIImage, Error>) -> Void) {
-        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
-            completion(.success(cacheImage))
-            return
+        nameLabel.text = viewModel.newsTitle
+        dateLabel.text = viewModel.newsDate
+        
+        if let imageData = viewModel.imageData {
+            newsImage.image = UIImage(data: imageData)
         }
         
-        NetworkManager.shared.fetchImage(from: url) { result in
-            switch result {
-            case .success(let imageData):
-                guard let image = UIImage(data: imageData) else { return }
-                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
-                completion(.success(image))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
     }
+    
+//    private func updateImage() {
+//        guard let imageURL = imageURL else { return }
+//        getImage(from: imageURL) { result in
+//            switch result {
+//            case .success(let image):
+//                if imageURL == self.imageURL {
+//                    self.newsImage.image = image
+//                    self.activityIndicator.stopAnimating()
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
+    
+//    private func getImage(from url: URL, completion : @escaping(Result<UIImage, Error>) -> Void) {
+//        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
+//            completion(.success(cacheImage))
+//            return
+//        }
+//        
+//        NetworkManager.shared.fetchImage(from: url) { result in
+//            switch result {
+//            case .success(let imageData):
+//                guard let image = UIImage(data: imageData) else { return }
+//                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+//                completion(.success(image))
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+    
 }

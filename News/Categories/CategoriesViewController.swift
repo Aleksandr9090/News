@@ -8,37 +8,39 @@
 import UIKit
 
 protocol CategoriesViewInputProtocol: AnyObject {
-    func setCategories()
+    func displayCategories(with categories: [String])
 }
 
 protocol CategoriesViewOutputProtocol {
-    init (view: CategoriesViewInputProtocol)
-    func didTapCell()
+    init(view: CategoriesViewInputProtocol)
+    func didTapCell(at indexPath: IndexPath)
+    func viewDidLoad()
 }
 
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var presenter: CategoriesViewOutputProtocol!
-    //    private let configurator: CategoriesConfiguratorInputProtocol = CategoriesConfigurator()
-    
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
+
+    var presenter: CategoriesViewOutputProtocol!
     
-    private let categories = DataManager.shared.category
+    private let configurator: CategoriesConfiguratorInputProtocol = CategoriesConfigurator()
+    
+    private var categories: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configurator.configure(withView: self)
+        presenter.viewDidLoad()
         setupTableView()
         view.backgroundColor = .white
         setupNavigationBar()
-        //        configurator.configure(withView: self)
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
     
     // MARK: - Table view data source
     
@@ -49,7 +51,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = categories[indexPath.row].rawValue
+        cell.textLabel?.text = categories[indexPath.row]
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -60,7 +62,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.pushViewController(newslineVC, animated: true)
     }
     
-    // MARK: - Privar methods
+    // MARK: - Privat methods
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -78,8 +80,9 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
 // MARK: - CategoriesViewInputProtocol
 extension CategoriesViewController: CategoriesViewInputProtocol {
-    func setCategories() {
-        
+    func displayCategories(with categories: [String]) {
+        self.categories = categories
+        tableView.reloadData()
     }
 }
 

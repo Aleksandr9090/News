@@ -8,14 +8,17 @@
 import Foundation
 
 protocol CategoriesConfiguratorInputProtocol {
-    func configure(withView view: CategoriesViewController)
+    func configure(withView viewController: CategoriesViewController)
 }
 
 class CategoriesConfigurator: CategoriesConfiguratorInputProtocol {
-    func configure(withView view: CategoriesViewController) {
-        let presenter = CategoriesPresenter(view: view)
-//        let interactor = CategoriesInteractor(presenter: presenter)
-        view.presenter = presenter
-//        presenter.interactor = interactor
+    func configure(withView viewController: CategoriesViewController) {
+        let presenter = CategoriesPresenter(view: viewController)
+        let interactor = CategoriesInteractor(presenter: presenter)
+        let router = CategoriesRouter(viewController: viewController)
+        
+        viewController.presenter = presenter
+        presenter.interactor = interactor
+        presenter.router = router
     }
 }
