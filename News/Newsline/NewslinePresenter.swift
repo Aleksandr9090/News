@@ -9,7 +9,8 @@ import Foundation
 
 struct NewslineData {
 //    let category: String
-    let newsArray: [News]
+//    let newsArray: [News]
+    let newsPage: NewsPage
 }
 
 class NewslinePresenter: NewslineViewOutputProtocol {
@@ -36,7 +37,7 @@ extension NewslinePresenter: NewslineInteractorOutputProtocol {
     func receiveCourseDetails(with newslineData: NewslineData) {
         self.dataStore = newslineData
         let section = NewslineSectionViewModel()
-        dataStore?.newsArray.forEach { section.rows.append(NewslineCellViewModel(news: $0)) }
+        dataStore?.newsPage.data?.forEach { section.rows.append(NewslineCellViewModel(news: $0)) }
         view.reloadData(for: section)
     }
 

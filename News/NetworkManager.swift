@@ -14,7 +14,8 @@ class NetworkManager {
     private init() {}
     
     func fetchData(from url: String?, with completion: @escaping(NewsPage) -> Void) {
-        guard let url = URL(string: url ?? "") else { return }
+        let fullUrl = "https://inshorts.deta.dev/news?category=\(url ?? "all")"
+        guard let url = URL(string: fullUrl) else { return }
 
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {

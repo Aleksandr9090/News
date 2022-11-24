@@ -9,7 +9,7 @@ import Foundation
 
 protocol CategoriesRouterInputProtocol {
     init(viewController: CategoriesViewController)
-    func openNewslineViewController(with categoryUrl: String)
+    func openNewslineViewController(with category: String)
 }
 
 class CategoriesRouter: CategoriesRouterInputProtocol {
@@ -19,9 +19,10 @@ class CategoriesRouter: CategoriesRouterInputProtocol {
         self.viewController = viewController
     }
     
-    func openNewslineViewController(with categoryUrl: String) {
+    func openNewslineViewController(with category: String) {
         let newslineVC = NewslineViewController()
-        newslineVC.categoryUrl = "https://inshortsapi.vercel.app/news?category=\(categoryUrl)"
+        
+        newslineVC.category = category
         viewController.navigationController?.pushViewController(newslineVC, animated: true)
     }
     

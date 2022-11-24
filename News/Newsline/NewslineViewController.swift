@@ -20,7 +20,7 @@ protocol NewslineViewOutputProtocol {
 class NewslineViewController: UIViewController, UITableViewDataSource {
     
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-    var categoryUrl: String!
+    var category: String!
     var presenter: NewslineViewOutputProtocol!
     
 //    var news: [News] = []
@@ -30,7 +30,7 @@ class NewslineViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configurator.configure(with: self, and: categoryUrl)
+        configurator.configure(with: self, and: category)
         presenter.viewDidLoad()
         view.backgroundColor = .white
         setupTableView()

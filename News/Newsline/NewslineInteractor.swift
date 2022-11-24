@@ -26,8 +26,8 @@ class NewslineInteractor: NewslineInteractorInputProtocol {
     }
     
     func fetchNews() {
-        NetworkManager.shared.fetchData(from: category) { [unowned self]  NewsPage in
-            let newslineData = NewslineData(newsArray: NewsPage.data ?? [])
+        NetworkManager.shared.fetchData(from: category) { [unowned self]  newsPage in
+            let newslineData = NewslineData(newsPage: newsPage)
             presenter.receiveCourseDetails(with: newslineData)
         }
         

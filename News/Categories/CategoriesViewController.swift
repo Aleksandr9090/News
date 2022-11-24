@@ -58,7 +58,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let newslineVC = NewslineViewController()
-        newslineVC.categoryUrl = "https://inshortsapi.vercel.app/news?category=\(categories[indexPath.row])"
+        newslineVC.category = categories[indexPath.row]
         navigationController?.pushViewController(newslineVC, animated: true)
     }
     
