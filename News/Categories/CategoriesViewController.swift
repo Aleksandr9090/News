@@ -71,8 +71,21 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func setupNavigationBar() {
         title = "News Сategories"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Favorite News",
+            style: .plain,
+            target: self,
+            action: #selector(favoriteButtonTapped)
+        )
+        
+         
         navigationController?.navigationBar.prefersLargeTitles = true
         
+    }
+    
+    @objc func favoriteButtonTapped() {
+        let favoriteListVC = FavoriteListViewController()
+        navigationController?.pushViewController(favoriteListVC, animated: true)
     }
     
 }

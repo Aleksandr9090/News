@@ -43,7 +43,6 @@ class NewslineCell: UITableViewCell {
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
-//        newsImage.clipsToBounds = true
         return newsImage
     }()
     
@@ -90,8 +89,6 @@ class NewslineCell: UITableViewCell {
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(newsImage.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
-//            newsImage.contentMode = .scaleAspectFit
-//            make.height.equalTo(contentView.frame.height * 2 / 3)
         }
         
         contentView.addSubview(dateLabel)
@@ -104,6 +101,13 @@ class NewslineCell: UITableViewCell {
     }
     
     func configure(with news: News) {
+        nameLabel.text = news.title
+        dateLabel.text = news.date
+        
+        imageURL = URL(string: news.imageUrl ?? "")
+    }
+    
+    func configure(with news: FavoriteNews) {
         nameLabel.text = news.title
         dateLabel.text = news.date
         

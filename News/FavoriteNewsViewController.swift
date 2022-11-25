@@ -1,16 +1,18 @@
 //
-//  SelectedNewsViewController.swift
+//  FavoriteNewsViewController.swift
 //  News
 //
-//  Created by Aleksandr on 24.11.2022.
+//  Created by Aleksandr on 25.11.2022.
 //
 
 import UIKit
 import SnapKit
 
-class SelectedNewsViewController: UIViewController {
+class FavoriteNewsViewController: UIViewController {
     
-    var news: News!
+    var delegate: FavoriteViewControllerDelegate!
+        
+    var favoriteNews: FavoriteNews!
     
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
@@ -54,21 +56,17 @@ class SelectedNewsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Save News",
-            style: .plain,
-            target: self,
-            action: #selector(addButtonTapped)
-        )
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteButtonTapped))
+        navigationItem.rightBarButtonItem?.tintColor = .red
 
         configure()
         layout()
     }
     
     private func configure() {
-        nameLabel.text = news.title
-        contentLabel.text = news.content
-        authorLabel.text = news.author
+        nameLabel.text = favoriteNews.title
+        contentLabel.text = favoriteNews.content
+        authorLabel.text = favoriteNews.author
         
         getImage()
         
@@ -115,7 +113,7 @@ class SelectedNewsViewController: UIViewController {
     }
     
     private func getImage() {
-        guard let url = URL(string: news.imageUrl ?? "") else { return }
+        guard let url = URL(string: favoriteNews.imageUrl ?? "") else { return }
         NetworkManager.shared.fetchImage(from: url) { result in
             switch result {
             case .success(let imageData):
@@ -127,24 +125,16 @@ class SelectedNewsViewController: UIViewController {
     }
     
     @objc func readMoreAction() {
-        let newsUrl = news.readMoreUrl
+        let newsUrl = favoriteNews.readMoreUrl
         let newsWebVC = NewsWebViewController()
         newsWebVC.newsUrl = newsUrl
         navigationController?.pushViewController(newsWebVC, animated: true)
     }
     
-    @objc func addButtonTapped() {
-        StorageManager.shared.save(news: news)
-        showAlert()
-    }
-    
-    private func showAlert() {
-        let alert = UIAlertController(title: "News Saved", message: "This news saved in favorites list", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        
-        present(alert, animated: true)
-        
+    @objc func deleteButtonTapped() {
+        StorageManager.shared.delete(favoriteNews)
+        delegate.reloadData()
+        navigationController?.popViewController(animated: true)
     }
 }
 
