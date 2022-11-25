@@ -19,7 +19,7 @@ class NewslineCell: UITableViewCell {
         }
     }
     
-    private let activityIndicator: UIActivityIndicatorView = {
+    private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .systemGray
         activityIndicator.startAnimating()
@@ -28,23 +28,22 @@ class NewslineCell: UITableViewCell {
         return activityIndicator
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
-    private let dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
         dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
         return dateLabel
     }()
     
-    private let newsImage: UIImageView = {
+    private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
-        newsImage.layer.cornerRadius = newsImage.frame.height / 2
-        newsImage.clipsToBounds = true
+//        newsImage.clipsToBounds = true
         return newsImage
     }()
     
@@ -81,6 +80,9 @@ class NewslineCell: UITableViewCell {
             make.leading.equalToSuperview().offset(6)
             make.width.equalTo(contentView.frame.height-8)
             make.height.equalTo(contentView.frame.height-8)
+            
+            newsImage.layer.cornerRadius = newsImage.frame.height / 2
+
         }
         
         contentView.addSubview(nameLabel)
@@ -88,7 +90,8 @@ class NewslineCell: UITableViewCell {
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(newsImage.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
-            make.height.equalTo(contentView.frame.height * 2 / 3)
+//            newsImage.contentMode = .scaleAspectFit
+//            make.height.equalTo(contentView.frame.height * 2 / 3)
         }
         
         contentView.addSubview(dateLabel)

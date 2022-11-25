@@ -16,6 +16,7 @@ protocol CategoriesViewOutputProtocol {
     func didTapCell()
 }
 
+
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var presenter: CategoriesViewOutputProtocol!

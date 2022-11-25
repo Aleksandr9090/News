@@ -48,6 +48,14 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let news = news[indexPath.row]
+        let selectedNewsVC = SelectedNewsViewController()
+        selectedNewsVC.news = news
+        navigationController?.pushViewController(selectedNewsVC, animated: true)
+    }
+    
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)
