@@ -50,7 +50,7 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
                                                         }
         let news = news[indexPath.row]
         
-        cell.configure(with: news)
+        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
         
         return cell
     }

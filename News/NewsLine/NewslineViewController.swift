@@ -7,7 +7,7 @@
 
 import UIKit
 protocol NewslineViewInputProtocol: AnyObject {
-    
+    func display(newsline: [News])
 }
 
 protocol NewslineViewOutputProtocol {
@@ -58,7 +58,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
                                                         }
         let news = news[indexPath.row]
         
-        cell.configure(with: news)
+        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
         
         return cell
     }
@@ -87,10 +87,15 @@ extension NewslineViewController {
             self.news = NewsPage.data ?? []
             self.tableView.reloadData()
         }
-        
+
     }
 }
 
 extension NewslineViewController: NewslineViewInputProtocol {
+    func display(newsline: [News]) {
+        self.news = newsline
+        self.tableView.reloadData()
+    }
+    
     
 }

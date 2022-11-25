@@ -13,7 +13,7 @@ protocol NewslineInteractorInputProtocol {
 }
 
 protocol NewslineInteractorOutputProtocol: AnyObject {
-    func newslineDidRecive(with newsLineData: NewslineData)
+    func newslineDidRecive(with newsLineData: NewslineData?)
 }
 
 class NewslineInteractor: NewslineInteractorInputProtocol {
@@ -26,7 +26,10 @@ class NewslineInteractor: NewslineInteractorInputProtocol {
     }
     
     func fetchNewsline() {
-        
+        NetworkManager.shared.fetchData(from: categoryUrl) { [weak self] newsPage in
+            let newslineData = NewslineData(news: newsPage.data)
+            self?.presenter.newslineDidRecive(with: newslineData)
+        }
     }
     
 }

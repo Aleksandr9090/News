@@ -99,18 +99,11 @@ class NewsCell: UITableViewCell {
         }
     }
     
-    func configure(with news: News) {
-        nameLabel.text = news.title
-        dateLabel.text = news.date
+    func configure(title: String?, date: String?, imageUrl: String?) {
+        nameLabel.text = title
+        dateLabel.text = date
         
-        imageURL = URL(string: news.imageUrl ?? "")
-    }
-    
-    func configure(with favoriteNews: FavoriteNews) {
-        nameLabel.text = favoriteNews.title
-        dateLabel.text = favoriteNews.date
-        
-        imageURL = URL(string: favoriteNews.imageUrl ?? "")
+        imageURL = URL(string: imageUrl ?? "")
     }
     
     private func prepareImage(for url: URL?) {

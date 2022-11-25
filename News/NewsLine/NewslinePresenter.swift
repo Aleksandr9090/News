@@ -8,7 +8,7 @@
 import Foundation
 
 struct NewslineData {
-    let news: [News]
+    let news: [News]?
 
 }
 
@@ -34,7 +34,8 @@ class NewslinePresenter: NewslineViewOutputProtocol {
 // MARK: - NewslineInteractorOutputProtocol
 
 extension NewslinePresenter: NewslineInteractorOutputProtocol {
-    func newslineDidRecive(with newsLineData: NewslineData) {
-        
+    func newslineDidRecive(with newsLineData: NewslineData?) {
+        guard let news = newslineData?.news else { return }
+        view.display(newsline: news)
     }
 }
