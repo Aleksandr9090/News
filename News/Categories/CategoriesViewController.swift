@@ -16,7 +16,6 @@ protocol CategoriesViewOutputProtocol {
     func didTapCell()
 }
 
-
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var presenter: CategoriesViewOutputProtocol!
@@ -39,7 +38,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
     
     // MARK: - Table view data source
     
