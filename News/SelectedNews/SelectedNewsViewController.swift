@@ -8,9 +8,20 @@
 import UIKit
 import SnapKit
 
+protocol SelectedNewsViewInputProtocol: AnyObject {
+    
+}
+
+protocol SelectedNewsViewOutputProtocol {
+    init(view: SelectedNewsViewInputProtocol)
+    func showNews()
+}
+
 class SelectedNewsViewController: UIViewController {
     
     var news: News!
+    
+    var presenter: SelectedNewsViewOutputProtocol!
     
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
@@ -146,6 +157,12 @@ class SelectedNewsViewController: UIViewController {
         present(alert, animated: true)
         
     }
+}
+
+// MARK: - SelectedNewsViewInputProtocol
+
+extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
+    
 }
 
 
