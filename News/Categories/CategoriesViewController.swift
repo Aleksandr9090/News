@@ -77,10 +77,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
             target: self,
             action: #selector(favoriteButtonTapped)
         )
-        
-         
         navigationController?.navigationBar.prefersLargeTitles = true
-        
     }
     
     @objc func favoriteButtonTapped() {

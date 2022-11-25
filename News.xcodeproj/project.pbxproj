@@ -12,6 +12,7 @@
 		1F5FB5062930F44800D18E32 /* SelectedNewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FB5052930F44800D18E32 /* SelectedNewsInteractor.swift */; };
 		1F5FB5082930F47600D18E32 /* SelectedNewsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FB5072930F47600D18E32 /* SelectedNewsConfigurator.swift */; };
 		1F5FB50A2930F48D00D18E32 /* SelectedNewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FB5092930F48D00D18E32 /* SelectedNewsRouter.swift */; };
+		1F5FB50C29310D2100D18E32 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FB50B29310D2100D18E32 /* ImageManager.swift */; };
 		1F6F63BB292FCA7200335D81 /* SelectedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BA292FCA7200335D81 /* SelectedNewsViewController.swift */; };
 		1F6F63BD292FFD1D00335D81 /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BC292FFD1D00335D81 /* NewsWebViewController.swift */; };
 		1F6F63BF29309B2500335D81 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BE29309B2500335D81 /* StorageManager.swift */; };
@@ -61,6 +62,7 @@
 		1F5FB5052930F44800D18E32 /* SelectedNewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedNewsInteractor.swift; sourceTree = "<group>"; };
 		1F5FB5072930F47600D18E32 /* SelectedNewsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedNewsConfigurator.swift; sourceTree = "<group>"; };
 		1F5FB5092930F48D00D18E32 /* SelectedNewsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedNewsRouter.swift; sourceTree = "<group>"; };
+		1F5FB50B29310D2100D18E32 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		1F6F63BA292FCA7200335D81 /* SelectedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedNewsViewController.swift; sourceTree = "<group>"; };
 		1F6F63BC292FFD1D00335D81 /* NewsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewController.swift; sourceTree = "<group>"; };
 		1F6F63BE29309B2500335D81 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				1F73F590292B883A00523B4F /* NetworkManager.swift */,
 				1F754616292D1AAC0039CB71 /* ImageCache.swift */,
 				1F6F63BE29309B2500335D81 /* StorageManager.swift */,
+				1F5FB50B29310D2100D18E32 /* ImageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				1F73F593292BA25C00523B4F /* DataManager.swift in Sources */,
 				1F73F587292B66C700523B4F /* CategoriesConfigurator.swift in Sources */,
 				1F73F585292B66B200523B4F /* CategoriesInteractor.swift in Sources */,
+				1F5FB50C29310D2100D18E32 /* ImageManager.swift in Sources */,
 				1F73F589292B7BB500523B4F /* News.swift in Sources */,
 				1F73F595292BA35D00523B4F /* NewslineViewController.swift in Sources */,
 				1F5FB50A2930F48D00D18E32 /* SelectedNewsRouter.swift in Sources */,

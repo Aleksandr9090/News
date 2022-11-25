@@ -9,12 +9,15 @@ import UIKit
 import SnapKit
 
 protocol SelectedNewsViewInputProtocol: AnyObject {
-    
+    func displayNewsName(with title: String)
+    func displayNewsContent(with title: String)
+    func displayImage(with imageData: Data)
 }
 
 protocol SelectedNewsViewOutputProtocol {
     init(view: SelectedNewsViewInputProtocol)
     func showNews()
+    func readMoreButtonPressed()
 }
 
 class SelectedNewsViewController: UIViewController {
@@ -22,6 +25,8 @@ class SelectedNewsViewController: UIViewController {
     var news: News!
     
     var presenter: SelectedNewsViewOutputProtocol!
+    
+    private let configurator: SelectedNewsConfiguratorInputProtocol = SelectedNewsConfigurator()
     
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
@@ -71,18 +76,20 @@ class SelectedNewsViewController: UIViewController {
             target: self,
             action: #selector(addButtonTapped)
         )
+        
+        configurator.configure(with: self, and: news)
+        presenter.showNews()
 
-        configure()
         layout()
+        
     }
     
     private func configure() {
-        nameLabel.text = news.title
-        contentLabel.text = news.content
-        authorLabel.text = news.author
+//        nameLabel.text = news.title
+//        contentLabel.text = news.content
+//        authorLabel.text = news.author
         
-        getImage()
-        
+//        getImage()
     }
     
     private func layout() {
@@ -138,6 +145,7 @@ class SelectedNewsViewController: UIViewController {
     }
     
     @objc func readMoreAction() {
+        presenter.readMoreButtonPressed()
         let newsUrl = news.readMoreUrl
         let newsWebVC = NewsWebViewController()
         newsWebVC.newsUrl = newsUrl
@@ -162,6 +170,18 @@ class SelectedNewsViewController: UIViewController {
 // MARK: - SelectedNewsViewInputProtocol
 
 extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
+    func displayImage(with imageData: Data) {
+        newsImage.image = UIImage(data: imageData)
+    }
+    
+    func displayNewsContent(with title: String) {
+        contentLabel.text = title
+    }
+    
+    func displayNewsName(with title: String) {
+        nameLabel.text = title
+    }
+    
     
 }
 
