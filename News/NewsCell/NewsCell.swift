@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import SnapKit
 
-class NewslineCell: UITableViewCell {
-    static let identifier = "newslineCell"
+class NewsCell: UITableViewCell {
+    static let identifier = "newsCell"
 
     private var imageURL: URL? {
         didSet {

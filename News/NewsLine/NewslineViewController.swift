@@ -37,8 +37,8 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewslineCell.identifier,
-                                                       for: indexPath) as? NewslineCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier,
+                                                       for: indexPath) as? NewsCell else {
                                                             return UITableViewCell()
                                                         }
         let news = news[indexPath.row]
@@ -59,7 +59,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)
-        tableView.register(NewslineCell.self, forCellReuseIdentifier: NewslineCell.identifier)
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }
