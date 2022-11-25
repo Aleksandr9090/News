@@ -11,11 +11,10 @@ import SnapKit
 
 class NewslineCell: UITableViewCell {
     static let identifier = "newslineCell"
-    
+
     private var imageURL: URL? {
         didSet {
-            imageView?.image = nil
-            updateImage()
+            prepareImage(for: imageURL)
         }
     }
     
@@ -104,7 +103,7 @@ class NewslineCell: UITableViewCell {
         nameLabel.text = news.title
         dateLabel.text = news.date
         
-        imageURL = URL(string: news.imageUrl ?? "")
+        imageURL = URL(string: news.imageUrl ?? "") 
     }
     
     func configure(with news: FavoriteNews) {
@@ -114,15 +113,12 @@ class NewslineCell: UITableViewCell {
         imageURL = URL(string: news.imageUrl ?? "")
     }
     
-    private func updateImage() {
-        guard let imageURL = imageURL else { return }
+    private func prepareImage(for url: URL?) {
+        guard let imageURL = url else { return }
         getImage(from: imageURL) { result in
-            switch result {
+            switch result{
             case .success(let image):
-                if imageURL == self.imageURL {
-                    self.newsImage.image = image
-                    self.activityIndicator.stopAnimating()
-                }
+                self.newsImage.image = image
             case .failure(let error):
                 print(error)
             }
@@ -130,16 +126,10 @@ class NewslineCell: UITableViewCell {
     }
     
     private func getImage(from url: URL, completion : @escaping(Result<UIImage, Error>) -> Void) {
-        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
-            completion(.success(cacheImage))
-            return
-        }
-        
         NetworkManager.shared.fetchImage(from: url) { result in
             switch result {
             case .success(let imageData):
                 guard let image = UIImage(data: imageData) else { return }
-                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
                 completion(.success(image))
             case .failure(let error):
                 completion(.failure(error))
