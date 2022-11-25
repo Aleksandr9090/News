@@ -6,6 +6,14 @@
 //
 
 import UIKit
+protocol NewslineViewInputProtocol: AnyObject {
+    
+}
+
+protocol NewslineViewOutputProtocol {
+    init(view: NewslineViewInputProtocol)
+    func showNewsline()
+}
 
 class NewslineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,9 +22,16 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     var categoryUrl: String!
     
     var news: [News] = []
+    
+    var presenter: NewslineViewOutputProtocol!
+    
+    private let configurator: NewslineConfiguratorInputProtocol = NewslineConfigurator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configurator.configure(with: self, and: categoryUrl)
+        presenter.showNewsline()
         
         view.backgroundColor = .white
         setupTableView()
@@ -74,4 +89,8 @@ extension NewslineViewController {
         }
         
     }
+}
+
+extension NewslineViewController: NewslineViewInputProtocol {
+    
 }

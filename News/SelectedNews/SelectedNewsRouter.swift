@@ -12,7 +12,7 @@ protocol SelectedNewsRouterInputProtocol {
     func openNewsWebViewController(with readMoreUrl: String?)
 }
 
-class CourseListRouter: SelectedNewsRouterInputProtocol {
+class SelectedNewsRouter: SelectedNewsRouterInputProtocol {
     unowned private let viewController: SelectedNewsViewController
     
     required init(viewController: SelectedNewsViewController) {

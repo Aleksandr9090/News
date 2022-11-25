@@ -15,7 +15,7 @@ class SelectedNewsConfigurator: SelectedNewsConfiguratorInputProtocol {
     func configure(with viewController: SelectedNewsViewController, and news: News) {
         let presenter = SelectedNewsPresenter(view: viewController)
         let interactor = SelectedNewsInteractor(presenter: presenter, news: news)
-        let router = CourseListRouter(viewController: viewController)
+        let router = SelectedNewsRouter(viewController: viewController)
         
         viewController.presenter = presenter
         presenter.interactor = interactor

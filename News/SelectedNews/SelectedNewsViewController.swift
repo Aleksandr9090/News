@@ -84,14 +84,6 @@ class SelectedNewsViewController: UIViewController {
         
     }
     
-    private func configure() {
-//        nameLabel.text = news.title
-//        contentLabel.text = news.content
-//        authorLabel.text = news.author
-        
-//        getImage()
-    }
-    
     private func layout() {
         view.addSubview(newsImage)
         newsImage.snp.makeConstraints { make in
