@@ -89,6 +89,8 @@ extension NewslineViewController {
             self.tableView.reloadData()
         }
 
+        
+        
     }
 }
 
