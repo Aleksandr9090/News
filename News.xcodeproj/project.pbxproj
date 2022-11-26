@@ -17,9 +17,8 @@
 		1F6C6D5229313A44002B599E /* NewslineInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5129313A44002B599E /* NewslineInteractor.swift */; };
 		1F6C6D5429313A6B002B599E /* NewslineConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5329313A6B002B599E /* NewslineConfigurator.swift */; };
 		1F6C6D5629313A7E002B599E /* NewslineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5529313A7E002B599E /* NewslineRouter.swift */; };
-		1F6C6D5829314BEA002B599E /* NewsCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5729314BEA002B599E /* NewsCellPresenter.swift */; };
-		1F6C6D5A29314C0F002B599E /* NewsCellInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5929314C0F002B599E /* NewsCellInteractor.swift */; };
-		1F6C6D5C29314C31002B599E /* NewsCellconfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5B29314C31002B599E /* NewsCellconfigurator.swift */; };
+		1F6C6D5E2931578F002B599E /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5D2931578F002B599E /* NewsCellViewModel.swift */; };
+		1F6C6D60293203EE002B599E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C6D5F293203EE002B599E /* Model.swift */; };
 		1F6F63BB292FCA7200335D81 /* SelectedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BA292FCA7200335D81 /* SelectedNewsViewController.swift */; };
 		1F6F63BD292FFD1D00335D81 /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BC292FFD1D00335D81 /* NewsWebViewController.swift */; };
 		1F6F63BF29309B2500335D81 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BE29309B2500335D81 /* StorageManager.swift */; };
@@ -74,9 +73,8 @@
 		1F6C6D5129313A44002B599E /* NewslineInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewslineInteractor.swift; sourceTree = "<group>"; };
 		1F6C6D5329313A6B002B599E /* NewslineConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewslineConfigurator.swift; sourceTree = "<group>"; };
 		1F6C6D5529313A7E002B599E /* NewslineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewslineRouter.swift; sourceTree = "<group>"; };
-		1F6C6D5729314BEA002B599E /* NewsCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellPresenter.swift; sourceTree = "<group>"; };
-		1F6C6D5929314C0F002B599E /* NewsCellInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellInteractor.swift; sourceTree = "<group>"; };
-		1F6C6D5B29314C31002B599E /* NewsCellconfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellconfigurator.swift; sourceTree = "<group>"; };
+		1F6C6D5D2931578F002B599E /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
+		1F6C6D5F293203EE002B599E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1F6F63BA292FCA7200335D81 /* SelectedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedNewsViewController.swift; sourceTree = "<group>"; };
 		1F6F63BC292FFD1D00335D81 /* NewsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewController.swift; sourceTree = "<group>"; };
 		1F6F63BE29309B2500335D81 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -136,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				1F73F594292BA35D00523B4F /* NewslineViewController.swift */,
+				1F6C6D5F293203EE002B599E /* Model.swift */,
 				1F6C6D4F29313A23002B599E /* NewslinePresenter.swift */,
 				1F6C6D5129313A44002B599E /* NewslineInteractor.swift */,
 				1F6C6D5329313A6B002B599E /* NewslineConfigurator.swift */,
@@ -204,9 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				1F73F596292BDB0800523B4F /* NewsCell.swift */,
-				1F6C6D5729314BEA002B599E /* NewsCellPresenter.swift */,
-				1F6C6D5929314C0F002B599E /* NewsCellInteractor.swift */,
-				1F6C6D5B29314C31002B599E /* NewsCellconfigurator.swift */,
+				1F6C6D5D2931578F002B599E /* NewsCellViewModel.swift */,
 			);
 			path = NewsCell;
 			sourceTree = "<group>";
@@ -432,9 +429,9 @@
 				1F73F589292B7BB500523B4F /* News.swift in Sources */,
 				1F73F595292BA35D00523B4F /* NewslineViewController.swift in Sources */,
 				1F5FB50A2930F48D00D18E32 /* SelectedNewsRouter.swift in Sources */,
-				1F6C6D5C29314C31002B599E /* NewsCellconfigurator.swift in Sources */,
 				1F6C6D5229313A44002B599E /* NewslineInteractor.swift in Sources */,
 				1FFE1F932929698D0058C983 /* CategoriesViewController.swift in Sources */,
+				1F6C6D5E2931578F002B599E /* NewsCellViewModel.swift in Sources */,
 				1F6F63C129309E5100335D81 /* FavoriteNewsViewController.swift in Sources */,
 				1F6F63BB292FCA7200335D81 /* SelectedNewsViewController.swift in Sources */,
 				1F6C6D5029313A23002B599E /* NewslinePresenter.swift in Sources */,
@@ -442,13 +439,12 @@
 				1F5FB5042930F43400D18E32 /* SelectedNewsPresenter.swift in Sources */,
 				1FFE1F992929698D0058C983 /* News.xcdatamodeld in Sources */,
 				1FFE1F912929698D0058C983 /* SceneDelegate.swift in Sources */,
-				1F6C6D5A29314C0F002B599E /* NewsCellInteractor.swift in Sources */,
 				1F5FB5062930F44800D18E32 /* SelectedNewsInteractor.swift in Sources */,
 				1F73F597292BDB0800523B4F /* NewsCell.swift in Sources */,
+				1F6C6D60293203EE002B599E /* Model.swift in Sources */,
 				1F73F583292B669400523B4F /* CategoriesPresenter.swift in Sources */,
 				1F6F63BF29309B2500335D81 /* StorageManager.swift in Sources */,
 				1F6C6D5429313A6B002B599E /* NewslineConfigurator.swift in Sources */,
-				1F6C6D5829314BEA002B599E /* NewsCellPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

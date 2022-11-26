@@ -23,6 +23,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     
     var news: [News] = []
     
+    
     var presenter: NewslineViewOutputProtocol!
     
     private let configurator: NewslineConfiguratorInputProtocol = NewslineConfigurator()
