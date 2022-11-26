@@ -13,7 +13,6 @@ struct NewslineData {
 }
 
 class NewslinePresenter: NewslineViewOutputProtocol {
-    
     unowned private let view: NewslineViewInputProtocol
     
     var interactor: NewslineInteractorInputProtocol!
@@ -29,13 +28,23 @@ class NewslinePresenter: NewslineViewOutputProtocol {
         interactor.fetchNewsline()
     }
     
+    func didTapCell(at indexPath: IndexPath) {
+        guard let oneNews = newslineData?.news?[indexPath.row] else { return }
+        router.openSelectedNewsViewController(with: oneNews)
+    }
+    
 }
 
 // MARK: - NewslineInteractorOutputProtocol
 
 extension NewslinePresenter: NewslineInteractorOutputProtocol {
-    func newslineDidRecive(with newsLineData: NewslineData?) {
-        guard let news = newslineData?.news else { return }
-        view.display(newsline: news)
+    func newslineDidRecive(with newslineData: NewslineData?) {
+        self.newslineData = newslineData
+        let section = NewsSectionViewModel()
+        newslineData?.news?.forEach { news in
+            let newsCellViewModel = NewsCellViewModel(news: news)
+            section.rows.append(newsCellViewModel)
+            view.reloadData(for: section)
+        }
     }
 }

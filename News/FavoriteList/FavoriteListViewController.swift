@@ -44,13 +44,13 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell",
                                                        for: indexPath) as? NewsCell else {
                                                             return UITableViewCell()
                                                         }
-        let news = news[indexPath.row]
+//        let news = news[indexPath.row]
         
-        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
+//        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
         
         return cell
     }
@@ -67,7 +67,7 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)
-        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.identifier)
+        tableView.register(NewsCell.self, forCellReuseIdentifier: "newsCell")
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -85,22 +85,9 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
     
 }
 
-// MARK: - Networking
-extension NewslineViewController {
-    private func fetchNews(from url: String) {
-        NetworkManager.shared.fetchData(from: url) { NewsPage in
-            self.news = NewsPage.data ?? []
-            self.tableView.reloadData()
-        }
-        
-    }
-}
-
 extension FavoriteListViewController: FavoriteViewControllerDelegate{
     func reloadData() {
         fetchData()
         tableView.reloadData()
     }
-    
-    
 }

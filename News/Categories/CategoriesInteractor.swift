@@ -9,7 +9,7 @@ import Foundation
 
 protocol  CategoriesInteractorInputProtocol: AnyObject {
     init(presenter: CategoriesInteractorOutputProtocol)
-    func provideCategoriesData()
+    func getCategories()
 }
 
 protocol CategoriesInteractorOutputProtocol: AnyObject {
@@ -23,8 +23,9 @@ class CategoriesInteractor: CategoriesInteractorInputProtocol {
         self.presenter = presenter
     }
     
-    func provideCategoriesData() {
-        //let categories = 
+    func getCategories() {
+        let categoriesData = CategoriesData(categories: DataManager.shared.category)
+        self.presenter.receiveCategoriesData(categoriesData)
     }
     
     

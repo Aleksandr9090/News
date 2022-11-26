@@ -30,18 +30,18 @@ final class SomeClass {
         
     }
     
-    func addToFavorites(model: Model) {
-        StorageManager.shared.fetchData { result in
-            switch result {
-            case let .success(news):
-                if news.contains { $0.id == model.id } {
-                    // show alert already added
-                } else {
-                    // create new CoreData object
-                }
-            case .failure(_):
-                <#code#>
-            }
-        }
-    }
+//    func addToFavorites(model: Model) {
+//        StorageManager.shared.fetchData { result in
+//            switch result {
+//            case let .success(news):
+//                if news.contains { $0.id == model.id } {
+//                    // show alert already added
+//                } else {
+//                    // create new CoreData object
+//                }
+//            case .failure(_):
+//                
+//            }
+//        }
+//    }
 }

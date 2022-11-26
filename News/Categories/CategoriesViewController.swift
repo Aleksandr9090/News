@@ -8,30 +8,35 @@
 import UIKit
 
 protocol CategoriesViewInputProtocol: AnyObject {
-    func setCategories()
+    func setCategories(categories: [String])
 }
 
 protocol CategoriesViewOutputProtocol {
     init (view: CategoriesViewInputProtocol)
-    func didTapCell()
+    func viewDidLoad()
+    func didTapCell(with category: String)
+    func favoriteButtonPressed()
 }
 
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
+
     
     var presenter: CategoriesViewOutputProtocol!
-    //    private let configurator: CategoriesConfiguratorInputProtocol = CategoriesConfigurator()
+    private let configurator: CategoriesConfiguratorInputProtocol = CategoriesConfigurator()
     
-    let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-    
-    private let categories = DataManager.shared.category
+    private var categories: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configurator.configure(withView: self)
+        presenter.viewDidLoad()
+        
+        
         setupTableView()
         view.backgroundColor = .white
         setupNavigationBar()
-        //        configurator.configure(withView: self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,15 +53,13 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = categories[indexPath.row].rawValue
+        cell.textLabel?.text = categories[indexPath.row]
         cell.accessoryType = .disclosureIndicator
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let newslineVC = NewslineViewController()
-        newslineVC.categoryUrl = "https://inshortsapi.vercel.app/news?category=\(categories[indexPath.row])"
-        navigationController?.pushViewController(newslineVC, animated: true)
+        presenter.didTapCell(with: categories[indexPath.row])
     }
     
     // MARK: - Privar methods
@@ -79,16 +82,16 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func favoriteButtonTapped() {
-        let favoriteListVC = FavoriteListViewController()
-        navigationController?.pushViewController(favoriteListVC, animated: true)
+        presenter.favoriteButtonPressed()
     }
     
 }
 
 // MARK: - CategoriesViewInputProtocol
 extension CategoriesViewController: CategoriesViewInputProtocol {
-    func setCategories() {
-        
+    func setCategories(categories: [String]) {
+        self.categories = categories
+        tableView.reloadData()
     }
 }
 

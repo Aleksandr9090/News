@@ -7,12 +7,13 @@
 
 import UIKit
 protocol NewslineViewInputProtocol: AnyObject {
-    func display(newsline: [News])
+    func reloadData(for section: NewsSectionViewModel)
 }
 
 protocol NewslineViewOutputProtocol {
     init(view: NewslineViewInputProtocol)
     func showNewsline()
+    func didTapCell(at indexPath: IndexPath)
 }
 
 class NewslineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -21,8 +22,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     
     var categoryUrl: String!
     
-    var news: [News] = []
-    
+    private var sectionViewModel: NewsSectionViewModelProtocol = NewsSectionViewModel()
     
     var presenter: NewslineViewOutputProtocol!
     
@@ -31,14 +31,11 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configurator.configure(with: self, and: categoryUrl)
         presenter.showNewsline()
         
         view.backgroundColor = .white
         setupTableView()
         title = "News"
-        
-        fetchNews(from: categoryUrl)
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,60 +46,42 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
 // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        news.count
+        sectionViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier,
+        let cellViewModel = sectionViewModel.rows[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.cellIdentifier,
                                                        for: indexPath) as? NewsCell else {
                                                             return UITableViewCell()
                                                         }
-        let news = news[indexPath.row]
         
-        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
+        cell.viewModel = cellViewModel
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let news = news[indexPath.row]
-        let selectedNewsVC = SelectedNewsViewController()
-        selectedNewsVC.news = news
-        navigationController?.pushViewController(selectedNewsVC, animated: true)
+        presenter.didTapCell(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        CGFloat(sectionViewModel.rows[indexPath.row].cellHeght)
     }
     
     private func setupTableView() {
-        tableView.rowHeight = 115
         view.addSubview(tableView)
-        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.identifier)
+        // надо пофиксить
+        tableView.register(NewsCell.self, forCellReuseIdentifier: "newsCell")
         tableView.delegate = self
         tableView.dataSource = self
     }
 }
 
-// MARK: - Networking
-extension NewslineViewController {
-    private func fetchNews(from url: String) {
-        NetworkManager.shared.fetchData(from: url) { NewsPage in
-            self.news = NewsPage.data ?? []
-            self.tableView.reloadData()
-        }
-
-        
-        
-    }
-}
-
 extension NewslineViewController: NewslineViewInputProtocol {
-    func display(newsline: [News]) {
-        self.news = newsline
-        self.tableView.reloadData()
+    func reloadData(for section: NewsSectionViewModel) {
+        sectionViewModel = section
+        tableView.reloadData()
     }
-    
-    
-    
-    
-    
-    
 }

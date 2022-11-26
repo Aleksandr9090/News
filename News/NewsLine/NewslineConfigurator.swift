@@ -20,7 +20,6 @@ class NewslineConfigurator: NewslineConfiguratorInputProtocol {
         viewController.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
-        
     }
 }
 

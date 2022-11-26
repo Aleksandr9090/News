@@ -13,7 +13,7 @@ protocol NewslineInteractorInputProtocol {
 }
 
 protocol NewslineInteractorOutputProtocol: AnyObject {
-    func newslineDidRecive(with newsLineData: NewslineData?)
+    func newslineDidRecive(with newslineData: NewslineData?)
 }
 
 class NewslineInteractor: NewslineInteractorInputProtocol {

@@ -21,7 +21,8 @@ class NewslineRouter: NewslineRouterInputProtocol {
     
     func openSelectedNewsViewController(with news: News) {
         let selectedNewsVC = SelectedNewsViewController()
-        selectedNewsVC.news = news
+        let selectedNewsConfigurator: SelectedNewsConfiguratorInputProtocol = SelectedNewsConfigurator()
+        selectedNewsConfigurator.configure(with: selectedNewsVC, and: news)
         viewController.navigationController?.pushViewController(selectedNewsVC, animated: true)
     }
 }

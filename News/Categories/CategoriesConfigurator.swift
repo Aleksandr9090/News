@@ -14,8 +14,11 @@ protocol CategoriesConfiguratorInputProtocol {
 class CategoriesConfigurator: CategoriesConfiguratorInputProtocol {
     func configure(withView view: CategoriesViewController) {
         let presenter = CategoriesPresenter(view: view)
-//        let interactor = CategoriesInteractor(presenter: presenter)
+        let interactor = CategoriesInteractor(presenter: presenter)
+        let router = CategoriesRouter(viewController: view)
+        
         view.presenter = presenter
-//        presenter.interactor = interactor
+        presenter.interactor = interactor
+        presenter.router = router
     }
 }

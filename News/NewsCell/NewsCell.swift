@@ -19,14 +19,6 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             updateView()
         }
     }
-//
-//    static let identifier = "newsCell"
-//
-//    private var imageURL: URL? {
-//        didSet {
-//            prepareImage(for: imageURL)
-//        }
-//    }
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -118,35 +110,4 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             newsImage.image = UIImage(data: imageData)
         }
     }
-    
-//    func configure(title: String?, date: String?, imageUrl: String?) {
-//        nameLabel.text = title
-//        dateLabel.text = date
-//
-//        imageURL = URL(string: imageUrl ?? "")
-//    }
-    
-//    private func prepareImage(for url: URL?) {
-//        guard let imageURL = url else { return }
-//        getImage(from: imageURL) { result in
-//            switch result{
-//            case .success(let image):
-//                self.newsImage.image = image
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
-//
-//    private func getImage(from url: URL, completion : @escaping(Result<UIImage, Error>) -> Void) {
-//        NetworkManager.shared.fetchImage(from: url) { result in
-//            switch result {
-//            case .success(let imageData):
-//                guard let image = UIImage(data: imageData) else { return }
-//                completion(.success(image))
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
-//    }
 }
