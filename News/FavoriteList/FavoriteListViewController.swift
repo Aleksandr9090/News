@@ -14,16 +14,13 @@ protocol FavoriteViewControllerDelegate {
 class FavoriteListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-    
-    private var sectionViewModel: FavoriteNewsSectionViewModelProtocol = FavoriteNewsSectionViewModel()
-
         
     var news: [FavoriteNews] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchData()
+        getData()
         view.backgroundColor = .white
         setupTableView()
         title = "Favorite News"
@@ -41,20 +38,17 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
 // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sectionViewModel.numberOfRows()
+        news.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellViewModel = sectionViewModel.rows[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteNewsCell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteNewsCell.identifier,
                                                        for: indexPath) as? FavoriteNewsCell else {
                                                             return UITableViewCell()
                                                         }
         
-//        cell.viewModel =
-        
-//        let news = news[indexPath.row]
-//        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
+        let oneNews = news[indexPath.row]
+        cell.configureCell(with: oneNews)
         
         return cell
     }
@@ -71,12 +65,12 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)
-        tableView.register(NewsCell.self, forCellReuseIdentifier: "newsCell")
+        tableView.register(FavoriteNewsCell.self, forCellReuseIdentifier: FavoriteNewsCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }
     
-    private func fetchData() {
+    private func getData() {
         StorageManager.shared.fetchData { result in
             switch result {
             case .success(let newsArray):
@@ -91,7 +85,7 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
 
 extension FavoriteListViewController: FavoriteViewControllerDelegate{
     func reloadData() {
-        fetchData()
+        getData()
         tableView.reloadData()
     }
 }
