@@ -10,6 +10,7 @@ import Foundation
 protocol SelectedNewsInteractorInputProtocol {
     init(presenter: SelectedNewsInteractorOutputProtocol, news: News)
     func provideSelectedNews()
+    func saveSelectedNews()
 }
 
 protocol SelectedNewsInteractorOutputProtocol: AnyObject {
@@ -17,6 +18,7 @@ protocol SelectedNewsInteractorOutputProtocol: AnyObject {
 }
 
 class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
+    
     unowned private let presenter: SelectedNewsInteractorOutputProtocol
     private let news: News
     
@@ -25,13 +27,18 @@ class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
         self.news = news
     }
     
+    func saveSelectedNews() {
+        StorageManager.shared.save(news: news)
+        
+    }
+    
     func provideSelectedNews() {
         let imageData = ImageManager.shared.fetchImageData(from: news.imageUrl)
         let selectedNewsData = SelectedNewsData(
             title: news.title,
             content: news.content,
-            imageData: imageData,
-            readMoreUrl: news.readMoreUrl
+            imageData: imageData
+//            readMoreUrl: news.readMoreUrl
         )
         presenter.receiveSelectedNews(with: selectedNewsData)
     }

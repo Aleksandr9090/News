@@ -11,12 +11,11 @@ struct SelectedNewsData {
     let title: String?
     let content: String?
     let imageData: Data?
-    let readMoreUrl: String?
+//    let readMoreUrl: String?
 
 }
 
 class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
-    
     unowned private let view: SelectedNewsViewInputProtocol
     
     var interactor: SelectedNewsInteractorInputProtocol!
@@ -32,11 +31,15 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
         interactor.provideSelectedNews()
     }
     
-    func readMoreButtonPressed() {
-        guard let readMoreUrl = selectedNewsData?.readMoreUrl else { return }
-        print(readMoreUrl)
-        router.openNewsWebViewController(with: readMoreUrl)
+    func saveNewsButtonPressed() {
+        interactor.saveSelectedNews()
     }
+    
+//    func readMoreButtonPressed() {
+//        guard let readMoreUrl = selectedNewsData?.readMoreUrl else { return }
+//        print(readMoreUrl)
+//        router.openNewsWebViewController(with: readMoreUrl)
+//    }
 }
 
 // MARK: - SelectedNewsInteractorOutputProtocol

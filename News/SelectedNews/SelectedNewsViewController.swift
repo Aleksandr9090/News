@@ -17,7 +17,8 @@ protocol SelectedNewsViewInputProtocol: AnyObject {
 protocol SelectedNewsViewOutputProtocol {
     init(view: SelectedNewsViewInputProtocol)
     func showNews()
-    func readMoreButtonPressed()
+    func saveNewsButtonPressed()
+//    func readMoreButtonPressed()
 }
 
 class SelectedNewsViewController: UIViewController {
@@ -54,13 +55,13 @@ class SelectedNewsViewController: UIViewController {
         return authorLabel
     }()
     
-    private lazy var readMore: UIButton = {
-        let readMore = UIButton(type: .system)
-        readMore.setTitle("Read more...", for: .normal)
-        readMore.addTarget(self, action: #selector(readMoreAction), for: .touchUpInside)
-        
-        return readMore
-    }()
+//    private lazy var readMore: UIButton = {
+//        let readMore = UIButton(type: .system)
+//        readMore.setTitle("Read more...", for: .normal)
+//        readMore.addTarget(self, action: #selector(readMoreAction), for: .touchUpInside)
+//
+//        return readMore
+//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,23 +110,23 @@ class SelectedNewsViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
         }
         
-        view.addSubview(readMore)
-        readMore.snp.makeConstraints { make in
-            make.top.equalTo(authorLabel.snp.bottom).offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.width.equalTo(100)
-            make.height.equalTo(20)
-        }
+//        view.addSubview(readMore)
+//        readMore.snp.makeConstraints { make in
+//            make.top.equalTo(authorLabel.snp.bottom).offset(16)
+//            make.trailing.equalToSuperview().offset(-16)
+//            make.width.equalTo(100)
+//            make.height.equalTo(20)
+//        }
         
     }
     
-    @objc func readMoreAction() {
-        presenter.readMoreButtonPressed()
-    }
+//    @objc func readMoreAction() {
+//        presenter.readMoreButtonPressed()
+//    }
     
     @objc func addButtonTapped() {
-//        StorageManager.shared.save(news: news)
-//        showAlert()
+        presenter.saveNewsButtonPressed()
+        showAlert()
     }
     
     private func showAlert() {

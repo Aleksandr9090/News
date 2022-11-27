@@ -9,7 +9,7 @@ import Foundation
 
 protocol NewsCellViewModelProtocol {
     var cellIdentifier: String { get }
-    var cellHeght: Double { get }
+    var cellHeight: Double { get }
     var newsTitle: String { get }
     var newsDate: String { get }
     var imageUrl: URL? { get }
@@ -26,7 +26,7 @@ class NewsCellViewModel: NewsCellViewModelProtocol {
         "newsCell"
     }
     
-    var cellHeght: Double {
+    var cellHeight: Double {
         115
     }
     

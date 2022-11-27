@@ -61,6 +61,8 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         super.prepareForReuse()
         nameLabel.text = nil
         dateLabel.text = nil
+        
+        
     }
     
     override func layoutSubviews() {
@@ -80,8 +82,6 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             make.leading.equalToSuperview().offset(6)
             make.width.equalTo(contentView.frame.height-8)
             make.height.equalTo(contentView.frame.height-8)
-            
-            newsImage.layer.cornerRadius = newsImage.frame.height / 2
         }
         
         contentView.addSubview(nameLabel)

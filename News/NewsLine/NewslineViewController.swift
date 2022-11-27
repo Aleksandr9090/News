@@ -67,7 +67,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        CGFloat(sectionViewModel.rows[indexPath.row].cellHeght)
+        CGFloat(sectionViewModel.rows[indexPath.row].cellHeight)
     }
     
     private func setupTableView() {

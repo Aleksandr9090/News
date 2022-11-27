@@ -7,8 +7,6 @@
 
 import UIKit
 
-import UIKit
-
 protocol FavoriteViewControllerDelegate {
     func reloadData()
 }
@@ -16,6 +14,9 @@ protocol FavoriteViewControllerDelegate {
 class FavoriteListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
+    
+    private var sectionViewModel: FavoriteNewsSectionViewModelProtocol = FavoriteNewsSectionViewModel()
+
         
     var news: [FavoriteNews] = []
 
@@ -33,23 +34,26 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
         tableView.frame = view.bounds
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        tableView.reloadData()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
 // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        news.count
+        sectionViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell",
-                                                       for: indexPath) as? NewsCell else {
+        let cellViewModel = sectionViewModel.rows[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteNewsCell",
+                                                       for: indexPath) as? FavoriteNewsCell else {
                                                             return UITableViewCell()
                                                         }
-//        let news = news[indexPath.row]
         
+//        cell.viewModel =
+        
+//        let news = news[indexPath.row]
 //        cell.configure(title: news.title, date: news.date, imageUrl: news.imageUrl)
         
         return cell
