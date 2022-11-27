@@ -106,8 +106,15 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         nameLabel.text = viewModel.newsTitle
         dateLabel.text = viewModel.newsDate
         
-        if let imageData = viewModel.imageData {
-            newsImage.image = UIImage(data: imageData)
+        if let imageUrl = viewModel.imageUrl {
+            NetworkManager.shared.fetchImage(from: imageUrl) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.newsImage.image = UIImage(data: data)
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
 }

@@ -114,10 +114,10 @@ class FavoriteNewsViewController: UIViewController {
     
     private func getImage() {
         guard let url = URL(string: favoriteNews.imageUrl ?? "") else { return }
-        NetworkManager.shared.fetchImage(from: url) { result in
+        NetworkManager.shared.fetchImage(from: url) { [weak self] result in
             switch result {
             case .success(let imageData):
-                self.newsImage.image = UIImage(data: imageData)
+                self?.newsImage.image = UIImage(data: imageData)
             case .failure(let error):
                 print(error)
             }

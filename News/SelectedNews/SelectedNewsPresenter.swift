@@ -34,6 +34,7 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
     
     func readMoreButtonPressed() {
         guard let readMoreUrl = selectedNewsData?.readMoreUrl else { return }
+        print(readMoreUrl)
         router.openNewsWebViewController(with: readMoreUrl)
     }
 }

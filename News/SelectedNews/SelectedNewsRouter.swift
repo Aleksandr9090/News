@@ -9,7 +9,7 @@ import Foundation
 
 protocol SelectedNewsRouterInputProtocol {
     init(viewController: SelectedNewsViewController)
-    func openNewsWebViewController(with readMoreUrl: String?)
+    func openNewsWebViewController(with readMoreUrl: String)
 }
 
 class SelectedNewsRouter: SelectedNewsRouterInputProtocol {
@@ -19,9 +19,10 @@ class SelectedNewsRouter: SelectedNewsRouterInputProtocol {
         self.viewController = viewController
     }
     
-    func openNewsWebViewController(with readMoreUrl: String?) {
+    func openNewsWebViewController(with readMoreUrl: String) {
         let newsWebVC = NewsWebViewController()
         newsWebVC.newsUrl = readMoreUrl
+        print(readMoreUrl)
         viewController.navigationController?.pushViewController(newsWebVC, animated: true)
     }
 }

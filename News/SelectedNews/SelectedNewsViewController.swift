@@ -21,13 +21,9 @@ protocol SelectedNewsViewOutputProtocol {
 }
 
 class SelectedNewsViewController: UIViewController {
-    
-//    var news: News!
-    
+        
     var presenter: SelectedNewsViewOutputProtocol!
-    
-//    private let configurator: SelectedNewsConfiguratorInputProtocol = SelectedNewsConfigurator()
-    
+        
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
@@ -77,7 +73,6 @@ class SelectedNewsViewController: UIViewController {
             action: #selector(addButtonTapped)
         )
         
-//        configurator.configure(with: self, and: news)
         presenter.showNews()
 
         layout()
@@ -124,24 +119,8 @@ class SelectedNewsViewController: UIViewController {
         
     }
     
-//    private func getImage() {
-//        guard let url = URL(string: news.imageUrl ?? "") else { return }
-//        NetworkManager.shared.fetchImage(from: url) { result in
-//            switch result {
-//            case .success(let imageData):
-//                self.newsImage.image = UIImage(data: imageData)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
-    
     @objc func readMoreAction() {
-//        presenter.readMoreButtonPressed()
-//        let newsUrl = news.readMoreUrl
-//        let newsWebVC = NewsWebViewController()
-//        newsWebVC.newsUrl = newsUrl
-//        navigationController?.pushViewController(newsWebVC, animated: true)
+        presenter.readMoreButtonPressed()
     }
     
     @objc func addButtonTapped() {

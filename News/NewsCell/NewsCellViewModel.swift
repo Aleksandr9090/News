@@ -12,7 +12,7 @@ protocol NewsCellViewModelProtocol {
     var cellHeght: Double { get }
     var newsTitle: String { get }
     var newsDate: String { get }
-    var imageData: Data? { get }
+    var imageUrl: URL? { get }
     init(news: News)
 }
 
@@ -38,8 +38,8 @@ class NewsCellViewModel: NewsCellViewModelProtocol {
         news.date ?? ""
     }
     
-    var imageData: Data? {
-        ImageManager.shared.fetchImageData(from: news.imageUrl)
+    var imageUrl: URL? {
+        URL(string: news.imageUrl ?? "")
     }
     
     private let news: News
