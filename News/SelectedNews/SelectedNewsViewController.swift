@@ -19,12 +19,25 @@ protocol SelectedNewsViewOutputProtocol {
     init(view: SelectedNewsViewInputProtocol)
     func showNews()
     func saveNewsButtonPressed()
-//    func readMoreButtonPressed()
 }
 
 class SelectedNewsViewController: UIViewController {
         
     var presenter: SelectedNewsViewOutputProtocol!
+    
+    private let primaryColor = UIColor(
+        red: 242/255,
+        green: 242/255,
+        blue: 247/255,
+        alpha: 1
+    )
+    
+    private let secondaryColor = UIColor(
+        red: 220/255,
+        green: 251/255,
+        blue: 255/255,
+        alpha: 1
+    )
         
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
@@ -55,18 +68,11 @@ class SelectedNewsViewController: UIViewController {
         authorLabel.textAlignment = .right
         return authorLabel
     }()
-    
-//    private lazy var readMore: UIButton = {
-//        let readMore = UIButton(type: .system)
-//        readMore.setTitle("Read more...", for: .normal)
-//        readMore.addTarget(self, action: #selector(readMoreAction), for: .touchUpInside)
-//
-//        return readMore
-//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Save News",
@@ -110,19 +116,7 @@ class SelectedNewsViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
         }
         
-//        view.addSubview(readMore)
-//        readMore.snp.makeConstraints { make in
-//            make.top.equalTo(authorLabel.snp.bottom).offset(16)
-//            make.trailing.equalToSuperview().offset(-16)
-//            make.width.equalTo(100)
-//            make.height.equalTo(20)
-//        }
-        
     }
-    
-//    @objc func readMoreAction() {
-//        presenter.readMoreButtonPressed()
-//    }
     
     @objc func addButtonTapped() {
         presenter.saveNewsButtonPressed()

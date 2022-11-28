@@ -33,7 +33,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         configurator.configure(withView: self)
         presenter.viewDidLoad()
         
-        
         setupTableView()
         view.backgroundColor = .white
         setupNavigationBar()
@@ -61,6 +60,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.accessoryType = .disclosureIndicator
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter.didTapCell(with: categories[indexPath.row])
@@ -74,7 +74,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     
-    // MARK: - Privar methods
+    // MARK: - Private methods
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -96,21 +96,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func favoriteButtonTapped() {
         presenter.favoriteButtonPressed()
     }
-    
-//    private func cellAnimation() {
-//        let pulse = CASpringAnimation(keyPath: "transform.scale")
-//        pulse.duration = 0.6
-//        pulse.fromValue = 0.90
-//        pulse.toValue = 1
-//        pulse.autoreverses = true
-//        pulse.repeatCount = 2
-//        pulse.initialVelocity = 0.5
-//        pulse.damping = 1
-//        
-//        layer.add(pulse, forKey: nil)
-//    }
-    
-    
+       
 }
 
 // MARK: - CategoriesViewInputProtocol

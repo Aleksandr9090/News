@@ -14,6 +14,20 @@ class FavoriteNewsViewController: UIViewController {
         
     var favoriteNews: FavoriteNews!
     
+    private let primaryColor = UIColor(
+        red: 242/255,
+        green: 242/255,
+        blue: 247/255,
+        alpha: 1
+    )
+    
+    private let secondaryColor = UIColor(
+        red: 220/255,
+        green: 251/255,
+        blue: 255/255,
+        alpha: 1
+    )
+    
     private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
@@ -55,6 +69,7 @@ class FavoriteNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = .red

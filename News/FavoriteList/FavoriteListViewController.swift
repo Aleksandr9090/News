@@ -63,18 +63,9 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: 0)
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0.05 * Double(indexPath.row),
-            usingSpringWithDamping: 0.4,
-            initialSpringVelocity: 0.1,
-            options: .curveEaseIn
-        ) {
-            cell.transform = CGAffineTransform(
-                translationX: cell.contentView.frame.width,
-                y: cell.contentView.frame.height
-            )
+        cell.transform = CGAffineTransform(scaleX: 0, y: 0)
+        UIView.animate(withDuration: 0.5, delay: 0.01 * Double(indexPath.row)) {
+            cell.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }
     

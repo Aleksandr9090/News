@@ -34,12 +34,6 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
     func saveNewsButtonPressed() {
         interactor.saveSelectedNews()
     }
-    
-//    func readMoreButtonPressed() {
-//        guard let readMoreUrl = selectedNewsData?.readMoreUrl else { return }
-//        print(readMoreUrl)
-//        router.openNewsWebViewController(with: readMoreUrl)
-//    }
 }
 
 // MARK: - SelectedNewsInteractorOutputProtocol
