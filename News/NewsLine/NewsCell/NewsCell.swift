@@ -93,6 +93,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(newsImage.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(95)
         }
         
         contentView.addSubview(dateLabel)
@@ -100,7 +101,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom)
             make.leading.equalTo(newsImage.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
-            make.height.equalTo(contentView.frame.height / 3)
+            make.height.equalTo(20)
         }
     }
     

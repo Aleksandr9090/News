@@ -9,9 +9,9 @@ import Foundation
 
 class ImageManager {
     static let shared = ImageManager()
-    
+
     private init() {}
-    
+
     func fetchImageData(from urlString: String?) -> Data? {
         guard let urlString = urlString else { return nil }
         guard let url = URL(string: urlString) else { return nil }

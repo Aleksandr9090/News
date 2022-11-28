@@ -96,6 +96,7 @@ class FavoriteNewsCell: UITableViewCell {
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(newsImageView.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(95)
         }
         
         contentView.addSubview(dateLabel)
@@ -103,7 +104,7 @@ class FavoriteNewsCell: UITableViewCell {
             make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom)
             make.leading.equalTo(newsImageView.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
-            make.height.equalTo(contentView.frame.height / 3)
+            make.height.equalTo(20)
         }
     }
     

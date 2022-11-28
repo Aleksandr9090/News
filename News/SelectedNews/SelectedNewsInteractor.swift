@@ -29,7 +29,6 @@ class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
     
     func saveSelectedNews() {
         StorageManager.shared.save(news: news)
-        
     }
     
     func provideSelectedNews() {
@@ -38,7 +37,6 @@ class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
             title: news.title,
             content: news.content,
             imageData: imageData
-//            readMoreUrl: news.readMoreUrl
         )
         presenter.receiveSelectedNews(with: selectedNewsData)
     }
