@@ -5,13 +5,20 @@
 //  Created by Aleksandr on 27.11.2022.
 //
 
-import Foundation
 import UIKit
 import SnapKit
+import SwiftUI
 
 class FavoriteNewsCell: UITableViewCell {
         
     static let identifier = "newslineCell"
+    
+    private var imageUrl: URL? {
+        didSet {
+            newsImageView.image = nil
+            updateImage()
+        }
+    }
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -56,14 +63,8 @@ class FavoriteNewsCell: UITableViewCell {
         nameLabel.text = news.title
         dateLabel.text = news.date
         
-        NetworkManager.shared.fetchImage(from: news.imageUrl) { [weak self] result in
-            switch result {
-            case .success(let imageData):
-                self?.newsImageView.image = UIImage(data: imageData)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        imageUrl = URL(string: news.imageUrl ?? "")
+        
     }
     
     override func prepareForReuse() {
@@ -108,31 +109,35 @@ class FavoriteNewsCell: UITableViewCell {
         }
     }
     
-    private func configure(with favoriteNews: FavoriteNews){
-        nameLabel.text = favoriteNews.title
-        dateLabel.text = favoriteNews.date
-        
-        if let imageUrl = favoriteNews.imageUrl {
-            NetworkManager.shared.fetchImage(from: imageUrl) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    self?.newsImageView.image = UIImage(data: data)
-                case .failure(let error):
-                    print(error)
+    private func updateImage() {
+        guard let imageUrl = imageUrl else { return }
+        getImage(from: imageUrl) { result in
+            switch result {
+            case .success(let image):
+                if imageUrl == self.imageUrl {
+                    self.newsImageView.image = image
+                    self.activityIndicator.stopAnimating()
                 }
+            case .failure(let error):
+                print(error)
             }
         }
     }
     
-    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .systemGray
-        activityIndicator.startAnimating()
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        
-        view.addSubview(activityIndicator)
-        
-        return activityIndicator
+    private func getImage(from url: URL, completion: @escaping(Result<UIImage, Error>) -> Void) {
+        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
+            completion(.success(cacheImage))
+            return
+        }
+        NetworkManager.shared.fetchImage(from: url) { result in
+            switch result {
+            case .success(let data):
+                guard let image = UIImage(data: data) else { return }
+                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
+
 }

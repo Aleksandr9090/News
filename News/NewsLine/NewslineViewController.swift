@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 protocol NewslineViewInputProtocol: AnyObject {
     func reloadData(for section: NewsSectionViewModel)
 }
