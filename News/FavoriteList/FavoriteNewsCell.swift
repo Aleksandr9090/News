@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import SwiftUI
 
 class FavoriteNewsCell: UITableViewCell {
         
@@ -134,6 +133,7 @@ class FavoriteNewsCell: UITableViewCell {
             case .success(let data):
                 guard let image = UIImage(data: data) else { return }
                 ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+                completion(.success(image))
             case .failure(let error):
                 completion(.failure(error))
             }

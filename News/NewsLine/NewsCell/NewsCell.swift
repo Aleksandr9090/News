@@ -5,7 +5,6 @@
 //  Created by Aleksandr on 21.11.2022.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 
@@ -145,6 +144,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             case .success(let data):
                 guard let image = UIImage(data: data) else { return }
                 ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+                completion(.success(image))
             case .failure(let error):
                 completion(.failure(error))
             }

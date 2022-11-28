@@ -124,10 +124,6 @@ class FavoriteNewsViewController: UIViewController {
             make.width.equalTo(100)
             make.height.equalTo(20)
         }
-        
-      
-        
-
     }
     
     private func getImage() {
