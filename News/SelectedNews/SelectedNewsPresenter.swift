@@ -11,7 +11,7 @@ struct SelectedNewsData {
     let title: String?
     let content: String?
     let imageData: Data?
-//    let readMoreUrl: String?
+    let author: String?
 
 }
 
@@ -48,6 +48,7 @@ extension SelectedNewsPresenter: SelectedNewsInteractorOutputProtocol {
     func receiveSelectedNews(with selectedNewsData: SelectedNewsData) {
         view.displayNewsName(with: selectedNewsData.title ?? "")
         view.displayNewsContent(with: selectedNewsData.content ?? "")
+        view.displayNewsAuthor(with: selectedNewsData.author ?? "")
         guard let imageData = selectedNewsData.imageData else { return }
         view.displayImage(with: imageData)
     }

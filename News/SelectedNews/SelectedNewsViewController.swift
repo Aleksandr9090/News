@@ -11,6 +11,7 @@ import SnapKit
 protocol SelectedNewsViewInputProtocol: AnyObject {
     func displayNewsName(with title: String)
     func displayNewsContent(with title: String)
+    func displayNewsAuthor(with title: String)
     func displayImage(with imageData: Data)
 }
 
@@ -35,21 +36,21 @@ class SelectedNewsViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.font = .systemFont(ofSize: 26)
+        nameLabel.font = .systemFont(ofSize: 18, weight: .bold)
         nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
     private lazy var contentLabel: UILabel = {
         let contentLabel = UILabel()
-        contentLabel.font = .systemFont(ofSize: 18)
+        contentLabel.font = .systemFont(ofSize: 14)
         contentLabel.numberOfLines = 0
         return contentLabel
     }()
     
     private lazy var authorLabel: UILabel = {
         let authorLabel = UILabel()
-        authorLabel.font = .systemFont(ofSize: 18)
+        authorLabel.font = .systemFont(ofSize: 14)
         authorLabel.numberOfLines = 0
         authorLabel.textAlignment = .right
         return authorLabel
@@ -83,10 +84,10 @@ class SelectedNewsViewController: UIViewController {
     private func layout() {
         view.addSubview(newsImage)
         newsImage.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(8)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(-40)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(200)
+            make.height.equalTo(150)
         }
         
         view.addSubview(nameLabel)
@@ -94,18 +95,19 @@ class SelectedNewsViewController: UIViewController {
             make.top.equalTo(newsImage.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(80)
         }
         
         view.addSubview(contentLabel)
         contentLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(16)
+            make.top.equalTo(nameLabel.snp.bottom)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
         
         view.addSubview(authorLabel)
         authorLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentLabel.snp.bottom).offset(16)
+            make.top.equalTo(contentLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
@@ -142,6 +144,10 @@ class SelectedNewsViewController: UIViewController {
 // MARK: - SelectedNewsViewInputProtocol
 
 extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
+    func displayNewsAuthor(with title: String) {
+        authorLabel.text = title
+    }
+    
     func displayImage(with imageData: Data) {
         newsImage.image = UIImage(data: imageData)
     }

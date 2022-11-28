@@ -36,7 +36,8 @@ class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
         let selectedNewsData = SelectedNewsData(
             title: news.title,
             content: news.content,
-            imageData: imageData
+            imageData: imageData,
+            author: news.author
         )
         presenter.receiveSelectedNews(with: selectedNewsData)
     }
