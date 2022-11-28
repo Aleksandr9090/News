@@ -62,6 +62,23 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
         navigationController?.pushViewController(favoriteNewsVC, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: 0)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.05 * Double(indexPath.row),
+            usingSpringWithDamping: 0.4,
+            initialSpringVelocity: 0.1,
+            options: .curveEaseIn
+        ) {
+            cell.transform = CGAffineTransform(
+                translationX: cell.contentView.frame.width,
+                y: cell.contentView.frame.height
+            )
+        }
+    }
+    
+// MARK: - Private Methods
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)

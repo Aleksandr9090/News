@@ -42,6 +42,10 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
 // MARK: - Table view data source
 
@@ -61,6 +65,13 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(scaleX: 0, y: 0)
+        UIView.animate(withDuration: 0.5, delay: 0.01 * Double(indexPath.row)) {
+            cell.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter.didTapCell(at: indexPath)
@@ -69,7 +80,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         CGFloat(sectionViewModel.rows[indexPath.row].cellHeight)
     }
-    
+    // MARK: - Private Methods
     private func setupTableView() {
         view.addSubview(tableView)
         // надо пофиксить

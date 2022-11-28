@@ -44,6 +44,10 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.frame = view.bounds
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +65,14 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
         presenter.didTapCell(with: categories[indexPath.row])
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+                cell.transform = CGAffineTransform(scaleX: 0, y: 0)
+                UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row)) {
+                    cell.transform = CGAffineTransform(scaleX: 1, y: 1)
+                }
+    }
+
     
     // MARK: - Privar methods
     private func setupTableView() {
@@ -84,6 +96,20 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func favoriteButtonTapped() {
         presenter.favoriteButtonPressed()
     }
+    
+//    private func cellAnimation() {
+//        let pulse = CASpringAnimation(keyPath: "transform.scale")
+//        pulse.duration = 0.6
+//        pulse.fromValue = 0.90
+//        pulse.toValue = 1
+//        pulse.autoreverses = true
+//        pulse.repeatCount = 2
+//        pulse.initialVelocity = 0.5
+//        pulse.damping = 1
+//        
+//        layer.add(pulse, forKey: nil)
+//    }
+    
     
 }
 

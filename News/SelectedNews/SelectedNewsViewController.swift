@@ -76,9 +76,7 @@ class SelectedNewsViewController: UIViewController {
         )
         
         presenter.showNews()
-
         layout()
-        
     }
     
     private func layout() {
