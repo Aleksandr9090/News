@@ -22,7 +22,7 @@ class FavoriteNewsCell: UITableViewCell {
         return activityIndicator
     }()
     
-    let newsImageView: UIImageView = {
+    private lazy var newsImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -31,14 +31,14 @@ class FavoriteNewsCell: UITableViewCell {
         return image
     }()
     
-    let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         return label
     }()
     
-    let dateLabel:UILabel = {
+    private lazy var dateLabel:UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         return label

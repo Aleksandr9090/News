@@ -42,7 +42,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         return label
     }()
     
-    private var newsImage: UIImageView = {
+    private lazy var newsImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -65,8 +65,6 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         super.prepareForReuse()
         nameLabel.text = nil
         dateLabel.text = nil
-        
-        
     }
     
     override func layoutSubviews() {
