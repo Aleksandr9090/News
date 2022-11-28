@@ -10,7 +10,7 @@ import SnapKit
 
 class FavoriteNewsCell: UITableViewCell {
         
-    static let identifier = "newslineCell"
+    static let identifier = "favoriteCell"
     
     private var imageUrl: URL? {
         didSet {
