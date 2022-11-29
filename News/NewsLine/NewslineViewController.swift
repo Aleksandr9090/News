@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol NewslineViewInputProtocol: AnyObject {
     func reloadData(for section: NewsSectionViewModel)
@@ -28,6 +29,14 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     var presenter: NewslineViewOutputProtocol!
     
     private let configurator: NewslineConfiguratorInputProtocol = NewslineConfigurator()
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .systemGray
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +46,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         view.backgroundColor = .white
         setupTableView()
         title = "News"
+        layoutActivityIndicator()
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,11 +99,19 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    func layoutActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(self.view)
+        }
+    }
 }
 
 extension NewslineViewController: NewslineViewInputProtocol {
     func reloadData(for section: NewsSectionViewModel) {
         sectionViewModel = section
         tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
 }

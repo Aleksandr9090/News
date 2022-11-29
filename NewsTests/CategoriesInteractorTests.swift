@@ -1,6 +1,6 @@
 //
-//  NewsTests.swift
-//  NewsTests
+//  CategoriesInteractor.swift
+//  CategoriesInteractor
 //
 //  Created by Aleksandr on 19.11.2022.
 //
@@ -8,11 +8,10 @@
 import XCTest
 @testable import News
 
-class CategoriesPresenterTests: XCTestCase {
+class CategoriesInteractorTests: XCTestCase {
     
-    var categories: [String] = []
-    
-    var sut: CategoriesPresenter!
+//    var sut: CategoriesPresenter!
+//    var mockOutput: MockCate
     
 
     override func setUpWithError() throws {
@@ -23,7 +22,7 @@ class CategoriesPresenterTests: XCTestCase {
 
     override func tearDownWithError() throws {
         
-        sut = nil
+//        sut = nil
         
         try super.tearDownWithError()
     }
@@ -40,3 +39,5 @@ class CategoriesPresenterTests: XCTestCase {
     }
 
 }
+
+//class MockCategoriewsIneractorOutput: CategoriesInteractor
