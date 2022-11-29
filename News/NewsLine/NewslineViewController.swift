@@ -68,7 +68,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(scaleX: 0, y: 0)
-        UIView.animate(withDuration: 0.5, delay: 0.01 * Double(indexPath.row)) {
+        UIView.animate(withDuration: 0.5, delay: 0.005 * Double(indexPath.row)) {
             cell.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }
