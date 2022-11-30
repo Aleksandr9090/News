@@ -22,6 +22,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
     private var imageUrl: URL? {
         didSet {
             newsImageView.image = nil
+            activityIndicator.startAnimating()
             updateImage()
         }
     }

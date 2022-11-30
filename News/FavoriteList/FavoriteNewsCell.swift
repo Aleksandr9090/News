@@ -15,6 +15,7 @@ class FavoriteNewsCell: UITableViewCell {
     private var imageUrl: URL? {
         didSet {
             newsImageView.image = nil
+            activityIndicator.startAnimating()
             updateImage()
         }
     }
