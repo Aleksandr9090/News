@@ -26,9 +26,7 @@ class NewsWebViewController: UIViewController {
         guard let url = URL(string: webUrlString) else { return }
         let request = URLRequest(url: url)
         webView.load(request)
-        
     }
-    
 }
 
 // MARK: - WKUIDelegate

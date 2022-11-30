@@ -10,7 +10,7 @@ import XCTest
 
 class CategoriesInteractorTests: XCTestCase {
     
-//    var sut: CategoriesPresenter!
+    var sut: CategoriesPresenter!
 //    var mockOutput: MockCate
     
 
@@ -22,7 +22,7 @@ class CategoriesInteractorTests: XCTestCase {
 
     override func tearDownWithError() throws {
         
-//        sut = nil
+        sut = nil
         
         try super.tearDownWithError()
     }
@@ -40,4 +40,8 @@ class CategoriesInteractorTests: XCTestCase {
 
 }
 
-//class MockCategoriewsIneractorOutput: CategoriesInteractor
+class MockCategoriewsIneractorOutput: CategoriesInteractor {
+    
+}
+
+//class MockCategoriesInteractorInput:

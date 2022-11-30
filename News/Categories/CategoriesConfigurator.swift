@@ -13,12 +13,13 @@ protocol CategoriesConfiguratorInputProtocol {
 
 class CategoriesConfigurator: CategoriesConfiguratorInputProtocol {
     func configure(withView view: CategoriesViewController) {
-        let presenter = CategoriesPresenter(view: view)
-        let interactor = CategoriesInteractor(presenter: presenter)
-        let router = CategoriesRouter(viewController: view)
+        let interactor = CategoriesInteractor()
+        let router = CategoriesRouter()
+        let presenter = CategoriesPresenter(interactor: interactor, router: router)
         
         view.presenter = presenter
-        presenter.interactor = interactor
-        presenter.router = router
+        presenter.view = view
+        interactor.presenter = presenter
+        router.viewController = view
     }
 }

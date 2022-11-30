@@ -6,19 +6,22 @@
 //
 
 import Foundation
+
 struct CategoriesData {
     let categories: [String]
 }
 
 class CategoriesPresenter: CategoriesViewOutputProtocol {
-    unowned private let view: CategoriesViewInputProtocol
-    var interactor: CategoriesInteractorInputProtocol!
-    var router: CategoriesRouterInputProtocol!
+    weak var view: CategoriesViewInputProtocol?
+    
+    private let interactor: CategoriesInteractorInputProtocol
+    private let router: CategoriesRouterInputProtocol
     
     private var categoriesData: CategoriesData?
     
-    required init(view: CategoriesViewInputProtocol) {
-        self.view = view
+    init(interactor: CategoriesInteractorInputProtocol, router: CategoriesRouterInputProtocol) {
+        self.interactor = interactor
+        self.router = router
     }
     
     func favoriteButtonPressed() {
@@ -39,6 +42,6 @@ class CategoriesPresenter: CategoriesViewOutputProtocol {
 // MARK: - CategoriesInteractorOutputProtocol
 extension CategoriesPresenter: CategoriesInteractorOutputProtocol {
     func receiveCategoriesData(_ categoriesData: CategoriesData) {
-        view.setCategories(categories: categoriesData.categories)
+        view?.setCategories(categories: categoriesData.categories)
     }
 }

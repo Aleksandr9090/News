@@ -8,7 +8,6 @@
 import Foundation
 
 protocol  CategoriesInteractorInputProtocol: AnyObject {
-    init(presenter: CategoriesInteractorOutputProtocol)
     func getCategories()
 }
 
@@ -17,15 +16,11 @@ protocol CategoriesInteractorOutputProtocol: AnyObject {
 }
 
 class CategoriesInteractor: CategoriesInteractorInputProtocol {
-    unowned private let presenter: CategoriesInteractorOutputProtocol
-    
-    required init(presenter: CategoriesInteractorOutputProtocol) {
-        self.presenter = presenter
-    }
+    weak var presenter: CategoriesInteractorOutputProtocol?
     
     func getCategories() {
         let categoriesData = CategoriesData(categories: DataManager.shared.category)
-        self.presenter.receiveCategoriesData(categoriesData)
+        self.presenter?.receiveCategoriesData(categoriesData)
     }
     
     

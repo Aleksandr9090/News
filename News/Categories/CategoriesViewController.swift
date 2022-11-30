@@ -12,7 +12,6 @@ protocol CategoriesViewInputProtocol: AnyObject {
 }
 
 protocol CategoriesViewOutputProtocol {
-    init (view: CategoriesViewInputProtocol)
     func viewDidLoad()
     func didTapCell(with category: String)
     func favoriteButtonPressed()
@@ -21,8 +20,7 @@ protocol CategoriesViewOutputProtocol {
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
 
-    
-    var presenter: CategoriesViewOutputProtocol!
+    var presenter: CategoriesViewOutputProtocol?
     private let configurator: CategoriesConfiguratorInputProtocol = CategoriesConfigurator()
     
     private var categories: [String] = []
@@ -31,7 +29,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         configurator.configure(withView: self)
-        presenter.viewDidLoad()
+        presenter?.viewDidLoad()
         
         setupTableView()
         view.backgroundColor = .white
@@ -63,7 +61,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.didTapCell(with: categories[indexPath.row])
+        presenter?.didTapCell(with: categories[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -94,7 +92,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func favoriteButtonTapped() {
-        presenter.favoriteButtonPressed()
+        presenter?.favoriteButtonPressed()
     }
        
 }
@@ -106,5 +104,3 @@ extension CategoriesViewController: CategoriesViewInputProtocol {
         tableView.reloadData()
     }
 }
-
-
