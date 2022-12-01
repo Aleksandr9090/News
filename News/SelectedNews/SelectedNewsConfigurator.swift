@@ -13,14 +13,12 @@ protocol SelectedNewsConfiguratorInputProtocol {
 
 class SelectedNewsConfigurator: SelectedNewsConfiguratorInputProtocol {
     func configure(with viewController: SelectedNewsViewController, and news: News) {
-        let presenter = SelectedNewsPresenter(view: viewController)
-        let interactor = SelectedNewsInteractor(presenter: presenter, news: news)
-        let router = SelectedNewsRouter(viewController: viewController)
+        let interactor = SelectedNewsInteractor(news: news)
+        let presenter = SelectedNewsPresenter(interactor: interactor)
         
         viewController.presenter = presenter
-        presenter.interactor = interactor
-        presenter.router = router
-        
+        presenter.view = viewController
+        interactor.presenter = presenter
     }
 }
 

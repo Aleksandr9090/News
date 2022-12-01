@@ -16,15 +16,15 @@ struct SelectedNewsData {
 }
 
 class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
-    unowned private let view: SelectedNewsViewInputProtocol
+    weak var view: SelectedNewsViewInputProtocol?
     
-    var interactor: SelectedNewsInteractorInputProtocol!
-    var router: SelectedNewsRouterInputProtocol!
+    private let interactor: SelectedNewsInteractorInputProtocol
+//    private let router: SelectedNewsRouterInputProtocol
     
     private var selectedNewsData: SelectedNewsData?
     
-    required init(view: SelectedNewsViewInputProtocol) {
-        self.view = view
+    init(interactor: SelectedNewsInteractorInputProtocol) {
+        self.interactor = interactor
     }
     
     func showNews() {
@@ -40,10 +40,10 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
 
 extension SelectedNewsPresenter: SelectedNewsInteractorOutputProtocol {
     func receiveSelectedNews(with selectedNewsData: SelectedNewsData) {
-        view.displayNewsName(with: selectedNewsData.title ?? "")
-        view.displayNewsContent(with: selectedNewsData.content ?? "")
-        view.displayNewsAuthor(with: selectedNewsData.author ?? "")
+        view?.displayNewsName(with: selectedNewsData.title ?? "")
+        view?.displayNewsContent(with: selectedNewsData.content ?? "")
+        view?.displayNewsAuthor(with: selectedNewsData.author ?? "")
         guard let imageData = selectedNewsData.imageData else { return }
-        view.displayImage(with: imageData)
+        view?.displayImage(with: imageData)
     }
 }

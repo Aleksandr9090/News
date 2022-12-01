@@ -19,7 +19,10 @@ class CategoriesPresenter: CategoriesViewOutputProtocol {
     
     private var categoriesData: CategoriesData?
     
-    init(interactor: CategoriesInteractorInputProtocol, router: CategoriesRouterInputProtocol) {
+    init(
+        interactor: CategoriesInteractorInputProtocol,
+        router: CategoriesRouterInputProtocol
+    ) {
         self.interactor = interactor
         self.router = router
     }

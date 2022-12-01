@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SelectedNewsInteractorInputProtocol {
-    init(presenter: SelectedNewsInteractorOutputProtocol, news: News)
+//    init(presenter: SelectedNewsInteractorOutputProtocol, news: News)
     func provideSelectedNews()
     func saveSelectedNews()
 }
@@ -18,12 +18,10 @@ protocol SelectedNewsInteractorOutputProtocol: AnyObject {
 }
 
 class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
-    
-    unowned private let presenter: SelectedNewsInteractorOutputProtocol
+    weak var presenter: SelectedNewsInteractorOutputProtocol?
     private let news: News
     
-    required init(presenter: SelectedNewsInteractorOutputProtocol, news: News) {
-        self.presenter = presenter
+    init(news: News) {
         self.news = news
     }
     
@@ -39,7 +37,7 @@ class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
             imageData: imageData,
             author: news.author
         )
-        presenter.receiveSelectedNews(with: selectedNewsData)
+        presenter?.receiveSelectedNews(with: selectedNewsData)
     }
     
 }

@@ -16,14 +16,14 @@ protocol SelectedNewsViewInputProtocol: AnyObject {
 }
 
 protocol SelectedNewsViewOutputProtocol {
-    init(view: SelectedNewsViewInputProtocol)
+//    init(view: SelectedNewsViewInputProtocol)
     func showNews()
     func saveNewsButtonPressed()
 }
 
 class SelectedNewsViewController: UIViewController {
         
-    var presenter: SelectedNewsViewOutputProtocol!
+    var presenter: SelectedNewsViewOutputProtocol?
     
     private let primaryColor = UIColor(
         red: 242/255,
@@ -81,7 +81,7 @@ class SelectedNewsViewController: UIViewController {
             action: #selector(addButtonTapped)
         )
         
-        presenter.showNews()
+        presenter?.showNews()
         layout()
     }
     
@@ -119,7 +119,7 @@ class SelectedNewsViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        presenter.saveNewsButtonPressed()
+        presenter?.saveNewsButtonPressed()
         showAlert()
     }
     
