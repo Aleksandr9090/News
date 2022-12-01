@@ -8,7 +8,6 @@
 import Foundation
 
 protocol NewslineInteractorInputProtocol {
-    init(presenter: NewslineInteractorOutputProtocol, categoryUrl: String)
     func fetchNewsline()
 }
 
@@ -17,18 +16,17 @@ protocol NewslineInteractorOutputProtocol: AnyObject {
 }
 
 class NewslineInteractor: NewslineInteractorInputProtocol {
-    unowned private let presenter: NewslineInteractorOutputProtocol
-    private let categoryUrl: String
+    weak var presenter: NewslineInteractorOutputProtocol?
+    private let categoryUrl: String?
     
-    required init(presenter: NewslineInteractorOutputProtocol, categoryUrl: String) {
-        self.presenter = presenter
+    init(categoryUrl: String) {
         self.categoryUrl = categoryUrl
     }
     
     func fetchNewsline() {
         NetworkManager.shared.fetchData(from: categoryUrl) { [weak self] newsPage in
             let newslineData = NewslineData(news: newsPage.data)
-            self?.presenter.newslineDidRecive(with: newslineData)
+            self?.presenter?.newslineDidRecive(with: newslineData)
         }
     }
     

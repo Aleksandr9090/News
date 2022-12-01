@@ -13,7 +13,6 @@ protocol NewslineViewInputProtocol: AnyObject {
 }
 
 protocol NewslineViewOutputProtocol {
-    init(view: NewslineViewInputProtocol)
     func showNewsline()
     func didTapCell(at indexPath: IndexPath)
 }
@@ -22,11 +21,11 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     
-    var categoryUrl: String!
+    var categoryUrl: String?
     
     private var sectionViewModel: NewsSectionViewModelProtocol = NewsSectionViewModel()
     
-    var presenter: NewslineViewOutputProtocol!
+    var presenter: NewslineViewOutputProtocol?
     
     private let configurator: NewslineConfiguratorInputProtocol = NewslineConfigurator()
     
@@ -41,7 +40,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.showNewsline()
+        presenter?.showNewsline()
         
         view.backgroundColor = .white
         setupTableView()
@@ -85,7 +84,7 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.didTapCell(at: indexPath)
+        presenter?.didTapCell(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

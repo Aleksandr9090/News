@@ -9,19 +9,19 @@ import Foundation
 
 struct NewslineData {
     let news: [News]?
-
 }
 
 class NewslinePresenter: NewslineViewOutputProtocol {
-    unowned private let view: NewslineViewInputProtocol
+    weak var view: NewslineViewInputProtocol?
     
-    var interactor: NewslineInteractorInputProtocol!
-    var router: NewslineRouterInputProtocol!
+    private let interactor: NewslineInteractorInputProtocol
+    private let router: NewslineRouterInputProtocol
     
     private var newslineData: NewslineData?
     
-    required init(view: NewslineViewInputProtocol) {
-        self.view = view
+    init(interactor: NewslineInteractorInputProtocol, router: NewslineRouterInputProtocol) {
+        self.interactor = interactor
+        self.router = router
     }
     
     func showNewsline() {
@@ -44,7 +44,7 @@ extension NewslinePresenter: NewslineInteractorOutputProtocol {
         newslineData?.news?.forEach { news in
             let newsCellViewModel = NewsCellViewModel(news: news)
             section.rows.append(newsCellViewModel)
-            view.reloadData(for: section)
+            view?.reloadData(for: section)
         }
     }
 }
