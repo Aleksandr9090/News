@@ -54,7 +54,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = categories[indexPath.row]
+        cell.textLabel?.text = categories[safe: indexPath.row]
         cell.accessoryType = .disclosureIndicator
         return cell
     }

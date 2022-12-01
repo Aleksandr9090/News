@@ -16,7 +16,6 @@ protocol SelectedNewsViewInputProtocol: AnyObject {
 }
 
 protocol SelectedNewsViewOutputProtocol {
-//    init(view: SelectedNewsViewInputProtocol)
     func showNews()
     func saveNewsButtonPressed()
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol SelectedNewsInteractorInputProtocol {
-//    init(presenter: SelectedNewsInteractorOutputProtocol, news: News)
     func provideSelectedNews()
     func saveSelectedNews()
 }

@@ -29,7 +29,7 @@ class NewslinePresenter: NewslineViewOutputProtocol {
     }
     
     func didTapCell(at indexPath: IndexPath) {
-        guard let oneNews = newslineData?.news?[indexPath.row] else { return }
+        guard let oneNews = newslineData?.news?[safe: indexPath.row] else { return }
         router.openSelectedNewsViewController(with: oneNews)
     }
     

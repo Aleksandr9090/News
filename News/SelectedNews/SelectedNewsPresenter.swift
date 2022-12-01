@@ -12,14 +12,12 @@ struct SelectedNewsData {
     let content: String?
     let imageData: Data?
     let author: String?
-
 }
 
 class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
     weak var view: SelectedNewsViewInputProtocol?
     
     private let interactor: SelectedNewsInteractorInputProtocol
-//    private let router: SelectedNewsRouterInputProtocol
     
     private var selectedNewsData: SelectedNewsData?
     

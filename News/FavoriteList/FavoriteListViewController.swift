@@ -55,7 +55,7 @@ class FavoriteListViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let news = news[indexPath.row]
+        guard let news = news[safe: indexPath.row] else { return }
         let favoriteNewsVC = FavoriteNewsViewController()
         favoriteNewsVC.favoriteNews = news
         favoriteNewsVC.delegate = self

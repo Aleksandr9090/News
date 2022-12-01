@@ -57,14 +57,6 @@ class FavoriteNewsViewController: UIViewController {
         authorLabel.textAlignment = .right
         return authorLabel
     }()
-    
-    private lazy var readMoreButton: UIButton = {
-        let readMore = UIButton(type: .system)
-        readMore.setTitle("Read more...", for: .normal)
-        readMore.addTarget(self, action: #selector(readMoreAction), for: .touchUpInside)
-        
-        return readMore
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +76,6 @@ class FavoriteNewsViewController: UIViewController {
         authorLabel.text = favoriteNews.author
         
         getImage()
-        
     }
     
     private func layout() {
@@ -116,14 +107,6 @@ class FavoriteNewsViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
-        
-        view.addSubview(readMoreButton)
-        readMoreButton.snp.makeConstraints { make in
-            make.top.equalTo(authorLabel.snp.bottom).offset(8)
-            make.trailing.equalToSuperview().offset(-16)
-            make.width.equalTo(100)
-            make.height.equalTo(20)
-        }
     }
     
     private func getImage() {
@@ -136,13 +119,6 @@ class FavoriteNewsViewController: UIViewController {
                 print(error)
             }
         }
-    }
-    
-    @objc func readMoreAction() {
-        let newsUrl = favoriteNews.readMoreUrl
-        let newsWebVC = NewsWebViewController()
-        newsWebVC.newsUrl = newsUrl
-        navigationController?.pushViewController(newsWebVC, animated: true)
     }
     
     @objc func deleteButtonTapped() {
