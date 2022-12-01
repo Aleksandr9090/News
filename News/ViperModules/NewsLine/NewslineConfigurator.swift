@@ -13,9 +13,9 @@ protocol NewslineConfiguratorInputProtocol {
 
 class NewslineConfigurator: NewslineConfiguratorInputProtocol {
     func configure(with viewController: NewslineViewController, and categoryUrl: String) {
-        let interactor = NewslineInteractor(categoryUrl: categoryUrl)
+        let interactor = NewslineInteractor()
         let router = NewslineRouter()
-        let presenter = NewslinePresenter(interactor: interactor, router: router)
+        let presenter = NewslinePresenter(interactor: interactor, router: router, categoryUrl: categoryUrl)
         
         
         viewController.presenter = presenter

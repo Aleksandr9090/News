@@ -16,16 +16,22 @@ class NewslinePresenter: NewslineViewOutputProtocol {
     
     private let interactor: NewslineInteractorInputProtocol
     private let router: NewslineRouterInputProtocol
+    private let categoryUrl: String
     
     private var newslineData: NewslineData?
     
-    init(interactor: NewslineInteractorInputProtocol, router: NewslineRouterInputProtocol) {
+    init(
+        interactor: NewslineInteractorInputProtocol,
+        router: NewslineRouterInputProtocol,
+        categoryUrl: String
+    ) {
         self.interactor = interactor
         self.router = router
+        self.categoryUrl = categoryUrl
     }
     
     func showNewsline() {
-        interactor.fetchNewsline()
+        interactor.fetchNewsline(with: categoryUrl)
     }
     
     func didTapCell(at indexPath: IndexPath) {
@@ -36,7 +42,6 @@ class NewslinePresenter: NewslineViewOutputProtocol {
 }
 
 // MARK: - NewslineInteractorOutputProtocol
-
 extension NewslinePresenter: NewslineInteractorOutputProtocol {
     func newslineDidRecive(with newslineData: NewslineData?) {
         self.newslineData = newslineData
