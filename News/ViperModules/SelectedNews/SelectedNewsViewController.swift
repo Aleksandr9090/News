@@ -128,7 +128,6 @@ class SelectedNewsViewController: UIViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true)
-        
     }
 }
 
@@ -150,8 +149,6 @@ extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
     func displayNewsName(with title: String) {
         nameLabel.text = title
     }
-    
-    
 }
 
 

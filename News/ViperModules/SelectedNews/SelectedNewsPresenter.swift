@@ -18,30 +18,30 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
     weak var view: SelectedNewsViewInputProtocol?
     
     private let interactor: SelectedNewsInteractorInputProtocol
-    
     private var selectedNewsData: SelectedNewsData?
+    private let news: News
     
-    init(interactor: SelectedNewsInteractorInputProtocol) {
+    init(interactor: SelectedNewsInteractorInputProtocol, news: News) {
         self.interactor = interactor
+        self.news = news
     }
     
     func showNews() {
-        interactor.provideSelectedNews()
+        interactor.provideImageData(imageUrl: news.imageUrl)
     }
     
     func saveNewsButtonPressed() {
-        interactor.saveSelectedNews()
+        interactor.saveSelectedNews(news: news)
     }
 }
 
 // MARK: - SelectedNewsInteractorOutputProtocol
-
 extension SelectedNewsPresenter: SelectedNewsInteractorOutputProtocol {
-    func receiveSelectedNews(with selectedNewsData: SelectedNewsData) {
-        view?.displayNewsName(with: selectedNewsData.title ?? "")
-        view?.displayNewsContent(with: selectedNewsData.content ?? "")
-        view?.displayNewsAuthor(with: selectedNewsData.author ?? "")
-        guard let imageData = selectedNewsData.imageData else { return }
+    func receiveSelectedNewsData(with imageData: Data?) {
+        view?.displayNewsName(with: news.title ?? "")
+        view?.displayNewsContent(with: news.content ?? "")
+        view?.displayNewsAuthor(with: news.author ?? "")
+        guard let imageData = imageData else { return }
         view?.displayImage(with: imageData)
     }
 }

@@ -8,35 +8,23 @@
 import Foundation
 
 protocol SelectedNewsInteractorInputProtocol {
-    func provideSelectedNews()
-    func saveSelectedNews()
+    func provideImageData(imageUrl: String?)
+    func saveSelectedNews(news: News)
 }
 
 protocol SelectedNewsInteractorOutputProtocol: AnyObject {
-    func receiveSelectedNews(with selectedNewsData: SelectedNewsData)
+    func receiveSelectedNewsData(with imageData: Data?)
 }
 
 class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
     weak var presenter: SelectedNewsInteractorOutputProtocol?
-    private let news: News
     
-    init(news: News) {
-        self.news = news
-    }
-    
-    func saveSelectedNews() {
+    func saveSelectedNews(news: News) {
         StorageManager.shared.save(news: news)
     }
     
-    func provideSelectedNews() {
-        let imageData = ImageManager.shared.fetchImageData(from: news.imageUrl)
-        let selectedNewsData = SelectedNewsData(
-            title: news.title,
-            content: news.content,
-            imageData: imageData,
-            author: news.author
-        )
-        presenter?.receiveSelectedNews(with: selectedNewsData)
+    func provideImageData(imageUrl: String?) {
+        let imageData = ImageManager.shared.fetchImageData(from: imageUrl)
+        presenter?.receiveSelectedNewsData(with: imageData)
     }
-    
 }
