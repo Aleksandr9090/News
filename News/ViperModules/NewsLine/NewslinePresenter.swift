@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewslineData {
+struct NewslineViewModel {
     let news: [News]?
 }
 
@@ -18,7 +18,7 @@ class NewslinePresenter {
     private let router: NewslineRouterInputProtocol
     private let categoryUrl: String
     
-    private var newslineData: NewslineData?
+    private var newslineViewModel: NewslineViewModel?
     
     init(
         interactor: NewslineInteractorInputProtocol,
@@ -38,17 +38,17 @@ extension NewslinePresenter: NewslineViewOutputProtocol {
     }
     
     func didTapCell(at indexPath: IndexPath) {
-        guard let oneNews = newslineData?.news?[safe: indexPath.row] else { return }
+        guard let oneNews = newslineViewModel?.news?[safe: indexPath.row] else { return }
         router.openSelectedNewsViewController(with: oneNews)
     }
 }
 
 // MARK: - NewslineInteractorOutputProtocol
 extension NewslinePresenter: NewslineInteractorOutputProtocol {
-    func newslineDidRecive(with newslineData: NewslineData?) {
-        self.newslineData = newslineData
+    func newslineDidRecive(with newslineViewModel: NewslineViewModel?) {
+        self.newslineViewModel = newslineViewModel
         let section = NewsSectionViewModel()
-        newslineData?.news?.forEach { news in
+        newslineViewModel?.news?.forEach { news in
             let newsCellViewModel = NewsCellViewModel(news: news)
             section.rows.append(newsCellViewModel)
             view?.reloadData(for: section)

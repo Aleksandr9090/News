@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoriesData {
+struct CategoriesViewModel {
     let categories: [String]
 }
 
@@ -16,9 +16,7 @@ class CategoriesPresenter {
     
     private let interactor: CategoriesInteractorInputProtocol
     private let router: CategoriesRouterInputProtocol
-    
-    private var categoriesData: CategoriesData?
-    
+        
     init(
         interactor: CategoriesInteractorInputProtocol,
         router: CategoriesRouterInputProtocol
@@ -46,7 +44,7 @@ extension CategoriesPresenter: CategoriesViewOutputProtocol {
 
 // MARK: - CategoriesInteractorOutputProtocol
 extension CategoriesPresenter: CategoriesInteractorOutputProtocol {
-    func receiveCategoriesData(_ categoriesData: CategoriesData) {
-        view?.setCategories(categories: categoriesData.categories)
+    func receiveCategoriesViewModel(_ categoriesViewModel: CategoriesViewModel) {
+        view?.setCategories(categoriesViewModel: categoriesViewModel)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol SelectedNewsViewInputProtocol: AnyObject {
-    func display(with data: SelectedNewsData)
+    func display(with viewModel: SelectedNewsViewModel)
 }
 
 protocol SelectedNewsViewOutputProtocol {
@@ -129,11 +129,11 @@ class SelectedNewsViewController: UIViewController {
 
 // MARK: - SelectedNewsViewInputProtocol
 extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
-    func display(with data: SelectedNewsData) {
-        authorLabel.text = data.author
-        newsImage.image = UIImage(data: data.imageData)
-        contentLabel.text = data.content
-        nameLabel.text = data.title
+    func display(with viewModel: SelectedNewsViewModel) {
+        authorLabel.text = viewModel.author
+        newsImage.image = UIImage(data: viewModel.imageData)
+        contentLabel.text = viewModel.content
+        nameLabel.text = viewModel.title
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoriesViewInputProtocol: AnyObject {
-    func setCategories(categories: [String])
+    func setCategories(categoriesViewModel: CategoriesViewModel)
 }
 
 protocol CategoriesViewOutputProtocol {
@@ -99,8 +99,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
 // MARK: - CategoriesViewInputProtocol
 extension CategoriesViewController: CategoriesViewInputProtocol {
-    func setCategories(categories: [String]) {
-        self.categories = categories
+    func setCategories(categoriesViewModel: CategoriesViewModel) {
+        self.categories = categoriesViewModel.categories
         tableView.reloadData()
     }
 }

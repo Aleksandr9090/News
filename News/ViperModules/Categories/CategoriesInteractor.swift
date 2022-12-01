@@ -12,15 +12,15 @@ protocol  CategoriesInteractorInputProtocol: AnyObject {
 }
 
 protocol CategoriesInteractorOutputProtocol: AnyObject {
-    func receiveCategoriesData(_ categories: CategoriesData)
+    func receiveCategoriesViewModel(_ categoriesViewModel: CategoriesViewModel)
 }
 
 class CategoriesInteractor: CategoriesInteractorInputProtocol {
     weak var presenter: CategoriesInteractorOutputProtocol?
     
     func getCategories() {
-        let categoriesData = CategoriesData(categories: DataManager.shared.category)
-        self.presenter?.receiveCategoriesData(categoriesData)
+        let categoriesData = CategoriesViewModel(categories: DataManager.shared.category)
+        self.presenter?.receiveCategoriesViewModel(categoriesData)
     }
     
     

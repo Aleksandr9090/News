@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SelectedNewsData {
+struct SelectedNewsViewModel {
     let title: String
     let content: String
     let imageData: Data
@@ -18,7 +18,6 @@ class SelectedNewsPresenter {
     weak var view: SelectedNewsViewInputProtocol?
     
     private let interactor: SelectedNewsInteractorInputProtocol
-    private var selectedNewsData: SelectedNewsData?
     private let news: News
     
     init(interactor: SelectedNewsInteractorInputProtocol, news: News) {
@@ -42,12 +41,12 @@ extension SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
 extension SelectedNewsPresenter: SelectedNewsInteractorOutputProtocol {
     func receiveSelectedNewsData(with imageData: Data?){
         guard let imageData = imageData else { return }
-        let data = SelectedNewsData(
+        let viewModel = SelectedNewsViewModel(
             title: news.title ?? "",
             content: news.content ?? "",
             imageData: imageData,
             author: news.author ?? ""
         )
-        view?.display(with: data)
+        view?.display(with: viewModel)
     }
 }
