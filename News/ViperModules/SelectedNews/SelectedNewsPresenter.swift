@@ -8,13 +8,13 @@
 import Foundation
 
 struct SelectedNewsData {
-    let title: String?
-    let content: String?
-    let imageData: Data?
-    let author: String?
+    let title: String
+    let content: String
+    let imageData: Data
+    let author: String
 }
 
-class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
+class SelectedNewsPresenter {
     weak var view: SelectedNewsViewInputProtocol?
     
     private let interactor: SelectedNewsInteractorInputProtocol
@@ -25,7 +25,10 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
         self.interactor = interactor
         self.news = news
     }
-    
+}
+
+// MARK: - SelectedNewsViewOutputProtocol
+extension SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
     func showNews() {
         interactor.provideImageData(imageUrl: news.imageUrl)
     }
@@ -37,11 +40,14 @@ class SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
 
 // MARK: - SelectedNewsInteractorOutputProtocol
 extension SelectedNewsPresenter: SelectedNewsInteractorOutputProtocol {
-    func receiveSelectedNewsData(with imageData: Data?) {
-        view?.displayNewsName(with: news.title ?? "")
-        view?.displayNewsContent(with: news.content ?? "")
-        view?.displayNewsAuthor(with: news.author ?? "")
+    func receiveSelectedNewsData(with imageData: Data?){
         guard let imageData = imageData else { return }
-        view?.displayImage(with: imageData)
+        let data = SelectedNewsData(
+            title: news.title ?? "",
+            content: news.content ?? "",
+            imageData: imageData,
+            author: news.author ?? ""
+        )
+        view?.display(with: data)
     }
 }

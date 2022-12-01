@@ -11,7 +11,7 @@ struct CategoriesData {
     let categories: [String]
 }
 
-class CategoriesPresenter: CategoriesViewOutputProtocol {
+class CategoriesPresenter {
     weak var view: CategoriesViewInputProtocol?
     
     private let interactor: CategoriesInteractorInputProtocol
@@ -26,7 +26,10 @@ class CategoriesPresenter: CategoriesViewOutputProtocol {
         self.interactor = interactor
         self.router = router
     }
-    
+}
+
+// MARK: - CategoriesInteractorOutputProtocol
+extension CategoriesPresenter: CategoriesViewOutputProtocol {
     func favoriteButtonPressed() {
         router.openFavoriteListViewController()
     }
@@ -39,7 +42,6 @@ class CategoriesPresenter: CategoriesViewOutputProtocol {
     func viewDidLoad() {
         interactor.getCategories()
     }
-    
 }
 
 // MARK: - CategoriesInteractorOutputProtocol

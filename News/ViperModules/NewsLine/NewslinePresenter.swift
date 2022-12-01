@@ -11,7 +11,7 @@ struct NewslineData {
     let news: [News]?
 }
 
-class NewslinePresenter: NewslineViewOutputProtocol {
+class NewslinePresenter {
     weak var view: NewslineViewInputProtocol?
     
     private let interactor: NewslineInteractorInputProtocol
@@ -29,7 +29,10 @@ class NewslinePresenter: NewslineViewOutputProtocol {
         self.router = router
         self.categoryUrl = categoryUrl
     }
-    
+}
+
+// MARK: - NewslineInteractorOutputProtocol
+extension NewslinePresenter: NewslineViewOutputProtocol {
     func showNewsline() {
         interactor.fetchNewsline(with: categoryUrl)
     }
@@ -38,7 +41,6 @@ class NewslinePresenter: NewslineViewOutputProtocol {
         guard let oneNews = newslineData?.news?[safe: indexPath.row] else { return }
         router.openSelectedNewsViewController(with: oneNews)
     }
-    
 }
 
 // MARK: - NewslineInteractorOutputProtocol

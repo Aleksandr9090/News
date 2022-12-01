@@ -9,10 +9,7 @@ import UIKit
 import SnapKit
 
 protocol SelectedNewsViewInputProtocol: AnyObject {
-    func displayNewsName(with title: String)
-    func displayNewsContent(with title: String)
-    func displayNewsAuthor(with title: String)
-    func displayImage(with imageData: Data)
+    func display(with data: SelectedNewsData)
 }
 
 protocol SelectedNewsViewOutputProtocol {
@@ -114,7 +111,6 @@ class SelectedNewsViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
-        
     }
     
     @objc func addButtonTapped() {
@@ -132,23 +128,14 @@ class SelectedNewsViewController: UIViewController {
 }
 
 // MARK: - SelectedNewsViewInputProtocol
-
 extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
-    func displayNewsAuthor(with title: String) {
-        authorLabel.text = title
-    }
-    
-    func displayImage(with imageData: Data) {
-        newsImage.image = UIImage(data: imageData)
-    }
-    
-    func displayNewsContent(with title: String) {
-        contentLabel.text = title
-    }
-    
-    func displayNewsName(with title: String) {
-        nameLabel.text = title
+    func display(with data: SelectedNewsData) {
+        authorLabel.text = data.author
+        newsImage.image = UIImage(data: data.imageData)
+        contentLabel.text = data.content
+        nameLabel.text = data.title
     }
 }
+
 
 

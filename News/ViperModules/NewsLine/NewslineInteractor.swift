@@ -24,5 +24,4 @@ class NewslineInteractor: NewslineInteractorInputProtocol {
             self?.presenter?.newslineDidRecive(with: newslineData)
         }
     }
-    
 }
