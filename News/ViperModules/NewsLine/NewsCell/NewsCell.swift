@@ -110,14 +110,13 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         }
     }
     
+    // MARK: - Private Methods
     private func updateView(){
         guard let viewModel = viewModel as? NewsCellViewModel else { return }
-        
         nameLabel.text = viewModel.newsTitle
         dateLabel.text = viewModel.newsDate
         
         imageUrl = URL(string: viewModel.imageUrl)
-        
     }
     
     private func updateImage() {
@@ -151,5 +150,4 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
             }
         }
     }
-
 }

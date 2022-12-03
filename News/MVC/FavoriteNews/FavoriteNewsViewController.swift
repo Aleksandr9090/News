@@ -70,6 +70,13 @@ class FavoriteNewsViewController: UIViewController {
         layout()
     }
     
+    @objc func deleteButtonTapped() {
+        StorageManager.shared.delete(favoriteNews)
+        delegate.reloadData()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Private Methods
     private func configure() {
         nameLabel.text = favoriteNews.title
         contentLabel.text = favoriteNews.content
@@ -119,12 +126,6 @@ class FavoriteNewsViewController: UIViewController {
                 print(error)
             }
         }
-    }
-    
-    @objc func deleteButtonTapped() {
-        StorageManager.shared.delete(favoriteNews)
-        delegate.reloadData()
-        navigationController?.popViewController(animated: true)
     }
 }
 

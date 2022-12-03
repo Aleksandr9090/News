@@ -17,7 +17,7 @@ protocol CategoriesViewOutputProtocol {
     func favoriteButtonPressed()
 }
 
-class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoriesViewController: UIViewController {
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
 
     var presenter: CategoriesViewOutputProtocol?
@@ -45,33 +45,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
     
-    // MARK: - Table view data source
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        categories.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        cell.textLabel?.text = categories[safe: indexPath.row]
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        presenter?.didTapCell(with: categories[indexPath.row])
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
-        UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row)) {
-            cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
-        }
-    }
-
-    
     // MARK: - Private methods
     private func setupTableView() {
         view.addSubview(tableView)
@@ -94,7 +67,36 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func favoriteButtonTapped() {
         presenter?.favoriteButtonPressed()
     }
-       
+}
+
+// MARK: - TableViewDelegate
+extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.didTapCell(with: categories[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
+        UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row)) {
+            cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
+        }
+    }
+}
+
+// MARK: - TableViewDataSource
+extension CategoriesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        cell.textLabel?.text = categories[safe: indexPath.row]
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
 }
 
 // MARK: - CategoriesViewInputProtocol

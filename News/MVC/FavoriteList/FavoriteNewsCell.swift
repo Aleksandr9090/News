@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class FavoriteNewsCell: UITableViewCell {
-        
+    
     static let identifier = "favoriteCell"
     
     private var imageUrl: URL? {
@@ -59,14 +59,6 @@ class FavoriteNewsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(with news: FavoriteNews) {
-        nameLabel.text = news.title
-        dateLabel.text = news.date
-        
-        imageUrl = URL(string: news.imageUrl ?? "")
-        
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = nil
@@ -109,6 +101,14 @@ class FavoriteNewsCell: UITableViewCell {
         }
     }
     
+    func configureCell(with news: FavoriteNews) {
+        nameLabel.text = news.title
+        dateLabel.text = news.date
+        
+        imageUrl = URL(string: news.imageUrl ?? "")
+    }
+    
+    // MARK: - Private Methods
     private func updateImage() {
         guard let imageUrl = imageUrl else { return }
         getImage(from: imageUrl) { result in
@@ -140,5 +140,4 @@ class FavoriteNewsCell: UITableViewCell {
             }
         }
     }
-
 }

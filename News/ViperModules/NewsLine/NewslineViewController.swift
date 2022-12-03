@@ -17,7 +17,7 @@ protocol NewslineViewOutputProtocol {
     func didTapCell(at indexPath: IndexPath)
 }
 
-class NewslineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewslineViewController: UIViewController {
     
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     
@@ -57,24 +57,25 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
 
-// MARK: - Table view data source
+    // MARK: - Private Methods
+    private func setupTableView() {
+        view.addSubview(tableView)
+        // надо пофиксить
+        tableView.register(NewsCell.self, forCellReuseIdentifier: "newsCell")
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func layoutActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(self.view)
+        }
+    }
+}
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sectionViewModel.numberOfRows()
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellViewModel = sectionViewModel.rows[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.cellIdentifier,
-                                                       for: indexPath) as? NewsCell else {
-                                                            return UITableViewCell()
-                                                        }
-        
-        cell.viewModel = cellViewModel
-        
-        return cell
-    }
-    
+// MARK: - TableViewDelegate
+extension NewslineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(scaleX: 0, y: 0)
         UIView.animate(withDuration: 0.5, delay: 0.005 * Double(indexPath.row)) {
@@ -90,20 +91,22 @@ class NewslineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         CGFloat(sectionViewModel.rows[indexPath.row].cellHeight)
     }
-    // MARK: - Private Methods
-    private func setupTableView() {
-        view.addSubview(tableView)
-        // надо пофиксить
-        tableView.register(NewsCell.self, forCellReuseIdentifier: "newsCell")
-        tableView.delegate = self
-        tableView.dataSource = self
+}
+
+// MARK: - TableViewDataSource
+extension NewslineViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sectionViewModel.numberOfRows()
     }
     
-    func layoutActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalTo(self.view)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellViewModel = sectionViewModel.rows[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.cellIdentifier,
+                                                       for: indexPath) as? NewsCell else {
+            return UITableViewCell()
         }
+        cell.viewModel = cellViewModel
+        return cell
     }
 }
 

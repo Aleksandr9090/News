@@ -22,6 +22,4 @@ class CategoriesInteractor: CategoriesInteractorInputProtocol {
         let categoriesData = CategoriesViewModel(categories: DataManager.shared.category)
         self.presenter?.receiveCategoriesViewModel(categoriesData)
     }
-    
-    
 }
