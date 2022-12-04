@@ -60,7 +60,6 @@ class NewslineViewController: UIViewController {
     // MARK: - Private Methods
     private func setupTableView() {
         view.addSubview(tableView)
-        // надо пофиксить
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCellViewModel.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
