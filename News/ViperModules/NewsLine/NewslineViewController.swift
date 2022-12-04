@@ -61,7 +61,7 @@ class NewslineViewController: UIViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         // надо пофиксить
-        tableView.register(NewsCell.self, forCellReuseIdentifier: "newsCell")
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCellViewModel.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -100,11 +100,11 @@ extension NewslineViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellViewModel = sectionViewModel.rows[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.cellIdentifier,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellViewModel.cellIdentifier,
                                                        for: indexPath) as? NewsCell else {
             return UITableViewCell()
         }
+        let cellViewModel = sectionViewModel.rows[indexPath.row]
         cell.viewModel = cellViewModel
         return cell
     }

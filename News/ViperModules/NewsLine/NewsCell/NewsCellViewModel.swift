@@ -22,7 +22,7 @@ protocol NewsSectionViewModelProtocol {
 }
 
 class NewsCellViewModel: NewsCellViewModelProtocol {
-    var cellIdentifier: String {
+    static var cellIdentifier: String {
         "newsCell"
     }
     

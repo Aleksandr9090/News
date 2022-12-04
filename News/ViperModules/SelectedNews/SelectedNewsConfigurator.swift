@@ -20,6 +20,9 @@ class SelectedNewsConfigurator: SelectedNewsConfiguratorInputProtocol {
         presenter.view = viewController
         interactor.presenter = presenter
     }
+    deinit {
+        print("Deinit", SelectedNewsConfigurator.self)
+    }
 }
 
 
