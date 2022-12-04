@@ -20,7 +20,7 @@
 		1F6F28AC2932905100C21F4D /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F28AB2932905100C21F4D /* CategoriesRouter.swift */; };
 		1F6F28B22933C8F000C21F4D /* FavoriteNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F28B12933C8F000C21F4D /* FavoriteNewsCell.swift */; };
 		1F6F28BC2935025100C21F4D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F28BB2935025100C21F4D /* ImageCache.swift */; };
-		1F6F28BE293514C500C21F4D /* Extasion + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F28BD293514C500C21F4D /* Extasion + UIView.swift */; };
+		1F6F28BE293514C500C21F4D /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F28BD293514C500C21F4D /* Extension + UIView.swift */; };
 		1F6F63BB292FCA7200335D81 /* SelectedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BA292FCA7200335D81 /* SelectedNewsViewController.swift */; };
 		1F6F63BD292FFD1D00335D81 /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BC292FFD1D00335D81 /* NewsWebViewController.swift */; };
 		1F6F63BF29309B2500335D81 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F63BE29309B2500335D81 /* StorageManager.swift */; };
@@ -75,7 +75,7 @@
 		1F6F28AB2932905100C21F4D /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
 		1F6F28B12933C8F000C21F4D /* FavoriteNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsCell.swift; sourceTree = "<group>"; };
 		1F6F28BB2935025100C21F4D /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		1F6F28BD293514C500C21F4D /* Extasion + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extasion + UIView.swift"; sourceTree = "<group>"; };
+		1F6F28BD293514C500C21F4D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		1F6F63BA292FCA7200335D81 /* SelectedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedNewsViewController.swift; sourceTree = "<group>"; };
 		1F6F63BC292FFD1D00335D81 /* NewsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewController.swift; sourceTree = "<group>"; };
 		1F6F63BE29309B2500335D81 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -206,12 +206,12 @@
 			path = NewsCell;
 			sourceTree = "<group>";
 		};
-		1F6F28BF29351BFB00C21F4D /* Extansions */ = {
+		1F6F28BF29351BFB00C21F4D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1F6F28BD293514C500C21F4D /* Extasion + UIView.swift */,
+				1F6F28BD293514C500C21F4D /* Extension + UIView.swift */,
 			);
-			path = Extansions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1F7217082938AD9300CD30D0 /* App */ = {
@@ -300,7 +300,7 @@
 				1F72170C2938AF4F00CD30D0 /* MVC */,
 				1F5FB5002930EF4100D18E32 /* Models */,
 				1F5FB5012930EF8A00D18E32 /* Services */,
-				1F6F28BF29351BFB00C21F4D /* Extansions */,
+				1F6F28BF29351BFB00C21F4D /* Extensions */,
 				1F72170A2938AE8000CD30D0 /* CoreData */,
 				1F7217082938AD9300CD30D0 /* App */,
 				1F7217092938AE7000CD30D0 /* Resources */,
@@ -477,7 +477,7 @@
 				1F6F28AC2932905100C21F4D /* CategoriesRouter.swift in Sources */,
 				1FFE1F932929698D0058C983 /* CategoriesViewController.swift in Sources */,
 				1F6C6D5E2931578F002B599E /* NewsCellViewModel.swift in Sources */,
-				1F6F28BE293514C500C21F4D /* Extasion + UIView.swift in Sources */,
+				1F6F28BE293514C500C21F4D /* Extension + UIView.swift in Sources */,
 				1F6F63C129309E5100335D81 /* FavoriteNewsViewController.swift in Sources */,
 				1F6F63BB292FCA7200335D81 /* SelectedNewsViewController.swift in Sources */,
 				1F6C6D5029313A23002B599E /* NewslinePresenter.swift in Sources */,

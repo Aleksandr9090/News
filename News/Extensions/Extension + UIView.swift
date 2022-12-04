@@ -1,5 +1,5 @@
 //
-//  Extasion + UIView.swift
+//  Extension + UIView.swift
 //  News
 //
 //  Created by Aleksandr on 28.11.2022.
@@ -20,10 +20,16 @@ extension UIView {
     }
 }
 
-extension Collection {
-    /// Returns the element at the specified index if it is within bounds, otherwise nil.
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
+//extension Collection {
+//    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+//    subscript (safe index: Index) -> Element? {
+//        return indices.contains(index) ? self[index] : nil
+//    }
+//}
+
+extension Array {
+    subscript (safe index: Int) -> Element? {
+        return (index >= 0 && index < endIndex) ? self[index] : nil
     }
 }
 
