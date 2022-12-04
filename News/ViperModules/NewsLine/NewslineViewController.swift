@@ -88,7 +88,7 @@ extension NewslineViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        CGFloat(sectionViewModel.rows[indexPath.row].cellHeight)
+        CGFloat(sectionViewModel.rows[safe: indexPath.row]?.cellHeight ?? 100)
     }
 }
 
@@ -103,7 +103,7 @@ extension NewslineViewController: UITableViewDataSource {
                                                        for: indexPath) as? NewsCell else {
             return UITableViewCell()
         }
-        let cellViewModel = sectionViewModel.rows[indexPath.row]
+        let cellViewModel = sectionViewModel.rows[safe: indexPath.row]
         cell.viewModel = cellViewModel
         return cell
     }

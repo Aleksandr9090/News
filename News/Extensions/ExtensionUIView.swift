@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: - Set background color
 extension UIView {
     func addVerticalGradientLayer(topColor: UIColor, bottomColor: UIColor) {
         let gradient = CAGradientLayer()
@@ -20,17 +19,5 @@ extension UIView {
     }
 }
 
-//extension Collection {
-//    /// Returns the element at the specified index if it is within bounds, otherwise nil.
-//    subscript (safe index: Index) -> Element? {
-//        return indices.contains(index) ? self[index] : nil
-//    }
-//}
-
-extension Array {
-    subscript (safe index: Int) -> Element? {
-        return (index >= 0 && index < endIndex) ? self[index] : nil
-    }
-}
 
 

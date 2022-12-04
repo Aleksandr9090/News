@@ -73,7 +73,7 @@ class CategoriesViewController: UIViewController {
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter?.didTapCell(with: categories[indexPath.row])
+        presenter?.didTapCell(with: categories[safe: indexPath.row] ?? "all")
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

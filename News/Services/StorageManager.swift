@@ -32,7 +32,6 @@ class StorageManager {
     }
     
     // MARK: - CRUD
-    
     func fetchData(completion: (Result<[FavoriteNews], Error>) -> Void) {
         let fetchRequest = FavoriteNews.fetchRequest()
         do {
@@ -60,30 +59,6 @@ class StorageManager {
         viewContext.delete(favoriteNews)
         saveContext()
     }
-    
-    
-//    func create(_ news: News, completion: (FavoriteNews) -> Void) {
-//        let favoriteNews = FavoriteNews(context: viewContext)
-//
-//        completion(task)
-//        saveContext()
-//    }
-//
-//    func update(_ task: Task, newName: String) {
-//        task.title = newName
-//        saveContext()
-//    }
-//
-//    func delete(_ task: Task) {
-//        viewContext.delete(task)
-//        saveContext()
-//    }
-    
-    
-    
-    
-    
-    
 
     // MARK: - Core Data Saving support
     func saveContext () {
