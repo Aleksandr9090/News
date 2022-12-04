@@ -83,10 +83,12 @@ extension FavoriteListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteNewsCell.identifier,
-                                                       for: indexPath) as? FavoriteNewsCell else {
+                                                       for: indexPath) as? FavoriteNewsCell,
+              let oneNews = news[safe: indexPath.row]
+        else {
             return UITableViewCell()
         }
-        let oneNews = news[indexPath.row]
+        
         cell.configureCell(with: oneNews)
         return cell
     }
