@@ -14,7 +14,6 @@ protocol FavoriteViewControllerDelegate {
 class FavoriteListViewController: UIViewController {
     
     private let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-        
     private var news: [FavoriteNews] = []
 
     override func viewDidLoad() {
