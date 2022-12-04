@@ -8,3 +8,6 @@ Technology stack:
 <h4>
 VIPER<br>SnapKit<br>Core Data<br>Swift Package Manage<br>URLSession
 </h4>
+
+
+![](https://github.com/Aleksandr9090/News/blob/main/videoForGIT.gif)
