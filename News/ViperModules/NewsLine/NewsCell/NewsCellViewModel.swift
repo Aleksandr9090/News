@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NewsCellViewModelProtocol {
-    var cellIdentifier: String { get }
+    static var cellIdentifier: String { get }
     var cellHeight: Double { get }
     var newsTitle: String { get }
     var newsDate: String { get }
