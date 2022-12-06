@@ -6,7 +6,7 @@ This application displays news from the open API(https://github.com/cyberboysuma
 Technology stack:
 </h3>
 <h4>
-VIPER<br>SnapKit<br>Core Data<br>Swift Package Manage<br>URLSession
+VIPER<br>SnapKit<br>Core Data<br>Swift Package Manager<br>URLSession
 </h4>
 
 
