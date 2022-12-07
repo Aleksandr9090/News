@@ -9,16 +9,18 @@ import Foundation
 import CoreData
 import UIKit
 
-class StorageManager {
+public class StorageManager {
     
-    static let shared = StorageManager()
+    public static let shared = StorageManager()
     
     private let viewContext: NSManagedObjectContext
     
     // MARK: - Core Data stack
-    private let persistentContainer: NSPersistentContainer = {
+    public let persistentContainer: NSPersistentContainer = {
+        guard let modelURL = Bundle.module.url(forResource: "FavoriteNews", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: modelURL) else { return NSPersistentContainer() }
         
-        let container = NSPersistentContainer(name: "News")
+        let container = NSPersistentContainer(name: "FavoriteNews", managedObjectModel: model)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -61,7 +63,7 @@ class StorageManager {
     }
 
     // MARK: - Core Data Saving support
-    func saveContext () {
+    public func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NewsPack
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
