@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol FavoriteViewControllerDelegate {
+protocol FavoriteViewControllerDelegate: AnyObject {
     func reloadData()
 }
 
