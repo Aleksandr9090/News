@@ -21,5 +21,3 @@ class SelectedNewsConfigurator: SelectedNewsConfiguratorInputProtocol {
         interactor.presenter = presenter
     }
 }
-
-

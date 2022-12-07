@@ -17,4 +17,3 @@ struct DataManager {
        
     private init() {}
 }
-

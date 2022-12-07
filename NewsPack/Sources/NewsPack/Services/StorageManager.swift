@@ -57,7 +57,8 @@ public class StorageManager {
         saveContext()
     }
     
-    func delete(_ favoriteNews: FavoriteNews) {
+    func delete(_ favoriteNews: FavoriteNews?) {
+        guard let favoriteNews = favoriteNews else { return }
         viewContext.delete(favoriteNews)
         saveContext()
     }
@@ -75,5 +76,3 @@ public class StorageManager {
         }
     }
 }
-
-

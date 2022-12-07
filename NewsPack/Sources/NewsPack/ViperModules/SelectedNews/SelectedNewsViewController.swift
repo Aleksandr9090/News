@@ -136,6 +136,3 @@ extension SelectedNewsViewController: SelectedNewsViewInputProtocol {
         nameLabel.text = viewModel.title
     }
 }
-
-
-

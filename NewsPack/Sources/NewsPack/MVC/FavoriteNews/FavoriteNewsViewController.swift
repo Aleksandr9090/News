@@ -10,9 +10,9 @@ import SnapKit
 
 class FavoriteNewsViewController: UIViewController {
     
-    var delegate: FavoriteViewControllerDelegate!
+    var delegate: FavoriteViewControllerDelegate?
         
-    var favoriteNews: FavoriteNews!
+    var favoriteNews: FavoriteNews?
     
     private let primaryColor = UIColor(
         red: 242/255,
@@ -72,15 +72,15 @@ class FavoriteNewsViewController: UIViewController {
     
     @objc func deleteButtonTapped() {
         StorageManager.shared.delete(favoriteNews)
-        delegate.reloadData()
+        delegate?.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Private Methods
     private func configure() {
-        nameLabel.text = favoriteNews.title
-        contentLabel.text = favoriteNews.content
-        authorLabel.text = favoriteNews.author
+        nameLabel.text = favoriteNews?.title
+        contentLabel.text = favoriteNews?.content
+        authorLabel.text = favoriteNews?.author
         
         getImage()
     }
@@ -117,7 +117,7 @@ class FavoriteNewsViewController: UIViewController {
     }
     
     private func getImage() {
-        guard let url = URL(string: favoriteNews.imageUrl ?? "") else { return }
+        guard let url = URL(string: favoriteNews?.imageUrl ?? "") else { return }
         NetworkManager.shared.fetchImage(from: url) { [weak self] result in
             switch result {
             case .success(let imageData):
@@ -128,5 +128,3 @@ class FavoriteNewsViewController: UIViewController {
         }
     }
 }
-
-

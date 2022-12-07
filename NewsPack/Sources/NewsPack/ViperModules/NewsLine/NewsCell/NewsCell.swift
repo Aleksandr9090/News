@@ -71,7 +71,6 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         super.prepareForReuse()
         nameLabel.text = nil
         dateLabel.text = nil
-        
     }
     
     override func layoutSubviews() {
