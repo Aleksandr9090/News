@@ -11,3 +11,9 @@ VIPER<br>SnapKit<br>Core Data<br>Swift Package Manager<br>URLSession
 
 
 ![](https://github.com/Aleksandr9090/News/blob/main/videoForGIT.gif)
+
+
+## Installation:
+- Clone repository
+- Open News.xcodeproj 
+- Click "Start the active scheme"
