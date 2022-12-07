@@ -17,7 +17,7 @@ protocol CategoriesViewOutputProtocol {
     func favoriteButtonPressed()
 }
 
-class CategoriesViewController: UIViewController {
+public class CategoriesViewController: UIViewController {
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
 
     var presenter: CategoriesViewOutputProtocol?
@@ -25,7 +25,7 @@ class CategoriesViewController: UIViewController {
     
     private var categories: [String] = []
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         configurator.configure(withView: self)
@@ -36,12 +36,12 @@ class CategoriesViewController: UIViewController {
         setupNavigationBar()
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
@@ -71,12 +71,12 @@ class CategoriesViewController: UIViewController {
 
 // MARK: - TableViewDelegate
 extension CategoriesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter?.didTapCell(with: categories[safe: indexPath.row] ?? "all")
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
         UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row)) {
             cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
@@ -86,11 +86,11 @@ extension CategoriesViewController: UITableViewDelegate {
 
 // MARK: - TableViewDataSource
 extension CategoriesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         categories.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         cell.textLabel?.text = categories[safe: indexPath.row]
