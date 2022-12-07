@@ -21,9 +21,8 @@ class FavoriteListViewController: UIViewController {
         super.viewDidLoad()
         
         getData()
-        view.backgroundColor = .white
+        configure()
         setupTableView()
-        title = "Favorite News"
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,6 +35,11 @@ class FavoriteListViewController: UIViewController {
     }
 
     // MARK: - Private Methods
+    private func configure() {
+        view.backgroundColor = .white
+        title = "Favorite News"
+    }
+    
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)

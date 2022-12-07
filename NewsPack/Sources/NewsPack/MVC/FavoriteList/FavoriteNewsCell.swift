@@ -81,21 +81,6 @@ class FavoriteNewsCell: UITableViewCell {
     }
     
     // MARK: - Private Methods
-    private func updateImage() {
-        guard let imageUrl = imageUrl else { return }
-        getImage(from: imageUrl) { result in
-            switch result {
-            case .success(let image):
-                if imageUrl == self.imageUrl {
-                    self.newsImageView.image = image
-                    self.activityIndicator.stopAnimating()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     private func dateLabelAddSubview() {
         contentView.addSubview(dateLabel)
         
@@ -137,6 +122,22 @@ class FavoriteNewsCell: UITableViewCell {
             make.leading.equalToSuperview().offset(6)
             make.width.equalTo(contentView.frame.height-8)
             make.height.equalTo(contentView.frame.height-8)
+        }
+    }
+    
+    private func updateImage() {
+        guard let imageUrl = imageUrl else { return }
+        
+        getImage(from: imageUrl) { result in
+            switch result {
+            case .success(let image):
+                if imageUrl == self.imageUrl {
+                    self.newsImageView.image = image
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
