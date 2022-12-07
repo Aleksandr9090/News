@@ -43,7 +43,9 @@ class FavoriteListViewController: UIViewController {
     private func setupTableView() {
         tableView.rowHeight = 115
         view.addSubview(tableView)
+        
         tableView.register(FavoriteNewsCell.self, forCellReuseIdentifier: FavoriteNewsCell.identifier)
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -53,6 +55,7 @@ class FavoriteListViewController: UIViewController {
             switch result {
             case .success(let newsArray):
                 self.news = newsArray
+                tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -65,9 +68,11 @@ extension FavoriteListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let news = news[safe: indexPath.row] else { return }
+        
         let favoriteNewsVC = FavoriteNewsViewController()
         favoriteNewsVC.favoriteNews = news
         favoriteNewsVC.delegate = self
+        
         navigationController?.pushViewController(favoriteNewsVC, animated: true)
     }
     
@@ -102,6 +107,5 @@ extension FavoriteListViewController: UITableViewDataSource {
 extension FavoriteListViewController: FavoriteViewControllerDelegate{
     func reloadData() {
         getData()
-        tableView.reloadData()
     }
 }
