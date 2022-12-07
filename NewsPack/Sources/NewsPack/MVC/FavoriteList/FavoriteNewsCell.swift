@@ -20,7 +20,7 @@ class FavoriteNewsCell: UITableViewCell {
         }
     }
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
+    private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .systemGray
         activityIndicator.startAnimating()
@@ -29,7 +29,7 @@ class FavoriteNewsCell: UITableViewCell {
         return activityIndicator
     }()
     
-    private lazy var newsImageView: UIImageView = {
+    private var newsImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -38,14 +38,14 @@ class FavoriteNewsCell: UITableViewCell {
         return image
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         return label
     }()
     
-    private lazy var dateLabel:UILabel = {
+    private var dateLabel:UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         return label
@@ -68,37 +68,9 @@ class FavoriteNewsCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
-            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview().offset(6)
-            make.width.equalTo(contentView.frame.height-8)
-            make.height.equalTo(contentView.frame.height-8)
-        }
-        
-        contentView.addSubview(newsImageView)
-        newsImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top).offset(4)
-            make.leading.equalToSuperview().offset(6)
-            make.width.equalTo(contentView.frame.height-8)
-            make.height.equalTo(contentView.frame.height-8)
-        }
-        
-        contentView.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
-            make.leading.equalTo(newsImageView.snp.trailing).offset(6)
-            make.trailing.equalToSuperview().offset(-8)
-            make.height.equalTo(95)
-        }
-        
-        contentView.addSubview(dateLabel)
-        dateLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom)
-            make.leading.equalTo(newsImageView.snp.trailing).offset(6)
-            make.trailing.equalToSuperview().offset(-8)
-            make.height.equalTo(20)
-        }
+        activityIndicatorAddSubview()
+        newsImageViewAddSubview()
+        nameLabelAddSubview()
     }
     
     func configureCell(with news: FavoriteNews) {
@@ -121,6 +93,50 @@ class FavoriteNewsCell: UITableViewCell {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    private func dateLabelAddSubview() {
+        contentView.addSubview(dateLabel)
+        
+        dateLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom)
+            make.leading.equalTo(newsImageView.snp.trailing).offset(6)
+            make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(20)
+        }
+    }
+    
+    private func newsImageViewAddSubview() {
+        contentView.addSubview(newsImageView)
+        
+        newsImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top).offset(4)
+            make.leading.equalToSuperview().offset(6)
+            make.width.equalTo(contentView.frame.height-8)
+            make.height.equalTo(contentView.frame.height-8)
+        }
+    }
+    
+    private func nameLabelAddSubview() {
+        contentView.addSubview(nameLabel)
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(newsImageView.snp.trailing).offset(6)
+            make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(95)
+        }
+    }
+    
+    private func activityIndicatorAddSubview() {
+        contentView.addSubview(activityIndicator)
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview().offset(6)
+            make.width.equalTo(contentView.frame.height-8)
+            make.height.equalTo(contentView.frame.height-8)
         }
     }
     
