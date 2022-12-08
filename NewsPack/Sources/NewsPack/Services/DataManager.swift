@@ -5,8 +5,6 @@
 //  Created by Aleksandr on 21.11.2022.
 //
 
-import Foundation
-
 struct DataManager {
     static let shared = DataManager()
     

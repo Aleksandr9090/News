@@ -5,8 +5,6 @@
 //  Created by Aleksandr on 21.11.2022.
 //
 
-import Foundation
-
 struct CategoriesViewModel {
     let categories: [String]
 }

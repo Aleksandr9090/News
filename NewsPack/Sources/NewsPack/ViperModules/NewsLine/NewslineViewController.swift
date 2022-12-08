@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 protocol NewslineViewInputProtocol: AnyObject {
     func reloadData(for section: NewsSectionViewModel)

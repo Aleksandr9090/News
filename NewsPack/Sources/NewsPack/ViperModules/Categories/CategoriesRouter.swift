@@ -5,8 +5,6 @@
 //  Created by Aleksandr on 26.11.2022.
 //
 
-import Foundation
-
 protocol CategoriesRouterInputProtocol {
     func openNewslineViewController(with categoryUrl: String)
     func openFavoriteListViewController()

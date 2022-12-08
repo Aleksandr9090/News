@@ -5,8 +5,6 @@
 //  Created by Aleksandr on 26.11.2022.
 //
 
-import Foundation
-
 protocol NewsCellViewModelProtocol {
     static var cellIdentifier: String { get }
     var cellHeight: Double { get }

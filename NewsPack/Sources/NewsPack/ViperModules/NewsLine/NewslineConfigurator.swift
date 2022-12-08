@@ -5,8 +5,6 @@
 //  Created by Aleksandr on 25.11.2022.
 //
 
-import Foundation
-
 protocol NewslineConfiguratorInputProtocol {
     func configure( with viewController: NewslineViewController, and categoryUrl: String)
 }

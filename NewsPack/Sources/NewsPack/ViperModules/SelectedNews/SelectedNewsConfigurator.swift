@@ -5,8 +5,6 @@
 //  Created by Aleksandr on 25.11.2022.
 //
 
-import Foundation
-
 protocol SelectedNewsConfiguratorInputProtocol {
     func configure( with viewController: SelectedNewsViewController, and news: News)
 }
