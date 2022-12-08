@@ -21,7 +21,7 @@ final class SelectedNewsViewController: UIViewController {
         
     var presenter: SelectedNewsViewOutputProtocol?
         
-    private var newsImage: UIImageView = {
+    private lazy var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
         newsImage.layer.cornerRadius = newsImage.frame.height / 2
@@ -29,21 +29,21 @@ final class SelectedNewsViewController: UIViewController {
         return newsImage
     }()
     
-    private var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.font = .systemFont(ofSize: 18, weight: .bold)
         nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
-    private var contentLabel: UILabel = {
+    private lazy var contentLabel: UILabel = {
         let contentLabel = UILabel()
         contentLabel.font = .systemFont(ofSize: 14)
         contentLabel.numberOfLines = 0
         return contentLabel
     }()
     
-    private var authorLabel: UILabel = {
+    private lazy var authorLabel: UILabel = {
         let authorLabel = UILabel()
         authorLabel.font = .systemFont(ofSize: 14)
         authorLabel.numberOfLines = 0
