@@ -17,7 +17,7 @@ extension Color {
         get {
             switch self {
             case .primary :
-                return UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
+                return UIColor(red: 242/255, green: 220/255, blue: 247/255, alpha: 1)
             case .secondary:
                 return UIColor(red: 220/255, green: 251/255, blue: 255/255, alpha: 1)
             }

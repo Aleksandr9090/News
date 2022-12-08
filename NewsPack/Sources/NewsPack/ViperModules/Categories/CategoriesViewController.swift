@@ -18,9 +18,10 @@ protocol CategoriesViewOutputProtocol {
 }
 
 public final class CategoriesViewController: UIViewController {
-    let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-
+    
     var presenter: CategoriesViewOutputProtocol?
+    
+    private let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     private let configurator: CategoriesConfiguratorInputProtocol = CategoriesConfigurator()
     
     private var categories: [String] = []

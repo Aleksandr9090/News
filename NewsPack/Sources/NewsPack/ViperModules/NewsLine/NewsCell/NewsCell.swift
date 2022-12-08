@@ -27,7 +27,7 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
         }
     }
     
-    private var activityIndicator: UIActivityIndicatorView = {
+    private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .systemGray
         activityIndicator.startAnimating()
@@ -35,20 +35,20 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
         return activityIndicator
     }()
     
-    private var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         return label
     }()
     
-    private var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         return label
     }()
     
-    private var newsImageView: UIImageView = {
+    private lazy var newsImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -57,15 +57,15 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
         return image
     }()
     
+    required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+    }
+    
     // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
         
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
