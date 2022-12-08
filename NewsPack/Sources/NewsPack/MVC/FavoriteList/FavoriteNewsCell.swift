@@ -55,11 +55,11 @@ final class FavoriteNewsCell: UITableViewCell {
             super.init(coder: aDecoder)
     }
     
-    // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
+    // MARK: - LifeCycle
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = nil
@@ -72,6 +72,7 @@ final class FavoriteNewsCell: UITableViewCell {
         activityIndicatorAddSubview()
         newsImageViewAddSubview()
         nameLabelAddSubview()
+        dateLabelAddSubview()
     }
     
     // MARK: - PublicMethods

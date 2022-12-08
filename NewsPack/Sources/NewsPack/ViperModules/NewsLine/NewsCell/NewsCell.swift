@@ -61,13 +61,12 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
             super.init(coder: aDecoder)
     }
     
-    // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
-        
     }
     
+    // MARK: - LifeCycle
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = nil
@@ -76,32 +75,49 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        activityIndicatorAddSubview()
+        newsImageViewAddSubview()
+        nameLabelAddSubview()
+        dateLabelAddSubview()
+    }
+    
+    // MARK: - PrivateMethods
+    private func activityIndicatorAddSubview() {
         contentView.addSubview(activityIndicator)
+        
         activityIndicator.snp.makeConstraints { make in
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(6)
             make.width.equalTo(contentView.frame.height-8)
             make.height.equalTo(contentView.frame.height-8)
         }
-        
+    }
+    
+    private func newsImageViewAddSubview() {
         contentView.addSubview(newsImageView)
+        
         newsImageView.snp.makeConstraints { make in
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top).offset(4)
             make.leading.equalToSuperview().offset(6)
             make.width.equalTo(contentView.frame.height-8)
             make.height.equalTo(contentView.frame.height-8)
         }
-        
+    }
+    
+    private func nameLabelAddSubview() {
         contentView.addSubview(nameLabel)
+        
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(newsImageView.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(95)
         }
-        
+    }
+    
+    private func dateLabelAddSubview() {
         contentView.addSubview(dateLabel)
+        
         dateLabel.snp.makeConstraints { make in
             make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom)
             make.leading.equalTo(newsImageView.snp.trailing).offset(6)
@@ -110,7 +126,6 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
         }
     }
     
-    // MARK: - PrivateMethods
     private func updateView(){
         guard let viewModel = viewModel as? NewsCellViewModel else { return }
         nameLabel.text = viewModel.newsTitle
