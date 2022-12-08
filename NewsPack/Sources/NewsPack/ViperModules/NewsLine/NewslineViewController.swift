@@ -19,14 +19,12 @@ protocol NewslineViewOutputProtocol {
 
 class NewslineViewController: UIViewController {
     
-    let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-    
     var categoryUrl: String?
-    
-    private var sectionViewModel: NewsSectionViewModelProtocol = NewsSectionViewModel()
-    
     var presenter: NewslineViewOutputProtocol?
     
+    private let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
+    
+    private var sectionViewModel: NewsSectionViewModelProtocol = NewsSectionViewModel()
     private let configurator: NewslineConfiguratorInputProtocol = NewslineConfigurator()
     
     private var activityIndicator: UIActivityIndicatorView = {
@@ -43,9 +41,8 @@ class NewslineViewController: UIViewController {
         
         presenter?.showNewsline()
         
-        view.backgroundColor = .white
+        configure()
         setupTableView()
-        title = "News"
         layoutActivityIndicator()
     }
     
@@ -66,7 +63,12 @@ class NewslineViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func layoutActivityIndicator() {
+    private func configure() {
+        view.backgroundColor = .white
+        title = "News"
+    }
+    
+    private func layoutActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { make in
             make.center.equalTo(self.view)
