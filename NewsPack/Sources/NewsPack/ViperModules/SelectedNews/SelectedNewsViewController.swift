@@ -69,50 +69,71 @@ class SelectedNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
-        view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Save News",
-            style: .plain,
-            target: self,
-            action: #selector(addButtonTapped)
-        )
-        
+        configure()
         presenter?.showNews()
         layout()
     }
     
     // MARK: - PrivateMethods
     private func layout() {
+        newsImageAddSubview()
+        nameLabelAddSubview()
+        contentLabelAddSubview()
+        authorLabelAddSubview()
+    }
+    
+    private func newsImageAddSubview() {
         view.addSubview(newsImage)
+        
         newsImage.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(-40)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(150)
         }
-        
+    }
+
+    private func nameLabelAddSubview() {
         view.addSubview(nameLabel)
+        
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(newsImage.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(80)
         }
-        
+    }
+    
+    private func contentLabelAddSubview() {
         view.addSubview(contentLabel)
+        
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
-        
+    }
+    
+    private func authorLabelAddSubview() {
         view.addSubview(authorLabel)
+        
         authorLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+    }
+    
+    private func configure() {
+        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
+        view.backgroundColor = .white
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Save News",
+            style: .plain,
+            target: self,
+            action: #selector(addButtonTapped)
+        )
     }
     
     @objc private func addButtonTapped() {
@@ -121,7 +142,11 @@ class SelectedNewsViewController: UIViewController {
     }
     
     private func showAlert() {
-        let alert = UIAlertController(title: "News Saved", message: "This news saved in favorites list", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "News Saved",
+            message: "This news saved in favorites list", preferredStyle: .alert
+        )
+        
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         
