@@ -39,8 +39,9 @@ extension SelectedNewsPresenter: SelectedNewsViewOutputProtocol {
 
 // MARK: - SelectedNewsInteractorOutputProtocol
 extension SelectedNewsPresenter: SelectedNewsInteractorOutputProtocol {
-    func receiveSelectedNewsData(with imageData: Data?){
+    func selectedNewsDidReceive(with imageData: Data?){
         guard let imageData = imageData else { return }
+        
         let viewModel = SelectedNewsViewModel(
             title: news.title ?? "",
             content: news.content ?? "",

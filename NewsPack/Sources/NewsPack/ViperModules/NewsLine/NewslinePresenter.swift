@@ -48,6 +48,7 @@ extension NewslinePresenter: NewslineInteractorOutputProtocol {
     func newslineDidRecive(with newslineViewModel: NewslineViewModel?) {
         self.newslineViewModel = newslineViewModel
         let section = NewsSectionViewModel()
+        
         newslineViewModel?.news?.forEach { news in
             let newsCellViewModel = NewsCellViewModel(news: news)
             section.rows.append(newsCellViewModel)

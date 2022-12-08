@@ -13,7 +13,7 @@ protocol SelectedNewsInteractorInputProtocol {
 }
 
 protocol SelectedNewsInteractorOutputProtocol: AnyObject {
-    func receiveSelectedNewsData(with imageData: Data?)
+    func selectedNewsDidReceive(with imageData: Data?)
 }
 
 final class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
@@ -25,6 +25,6 @@ final class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
     
     func provideImageData(imageUrl: String?) {
         let imageData = ImageManager.shared.fetchImageData(from: imageUrl)
-        presenter?.receiveSelectedNewsData(with: imageData)
+        presenter?.selectedNewsDidReceive(with: imageData)
     }
 }

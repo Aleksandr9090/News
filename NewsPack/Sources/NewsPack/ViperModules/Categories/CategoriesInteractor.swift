@@ -12,13 +12,13 @@ protocol  CategoriesInteractorInputProtocol: AnyObject {
 }
 
 protocol CategoriesInteractorOutputProtocol: AnyObject {
-    func receiveCategories(_ categories: [String])
+    func categoriesDidReceive(_ categories: [String])
 }
 
 final class CategoriesInteractor: CategoriesInteractorInputProtocol {
     weak var presenter: CategoriesInteractorOutputProtocol?
     
     func getCategories() {
-        self.presenter?.receiveCategories(DataManager.shared.category)
+        self.presenter?.categoriesDidReceive(DataManager.shared.category)
     }
 }

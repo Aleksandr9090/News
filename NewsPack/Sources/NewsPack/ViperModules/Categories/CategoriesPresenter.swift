@@ -44,7 +44,7 @@ extension CategoriesPresenter: CategoriesViewOutputProtocol {
 
 // MARK: - CategoriesInteractorOutputProtocol
 extension CategoriesPresenter: CategoriesInteractorOutputProtocol {
-    func receiveCategories(_ categories: [String]) {
+    func categoriesDidReceive(_ categories: [String]) {
         let categoriesViewModel = CategoriesViewModel(categories: categories)
         view?.setCategories(categoriesViewModel: categoriesViewModel)
     }
