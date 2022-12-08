@@ -7,9 +7,9 @@
 
 import CoreData
 
-public final class StorageManager {
+final class StorageManager {
     
-    public static let shared = StorageManager()
+    static let shared = StorageManager()
     
     private let viewContext: NSManagedObjectContext
     
@@ -62,7 +62,7 @@ public final class StorageManager {
     }
 
     // MARK: - CoreDataSavingSupport
-    public func saveContext () {
+    func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
