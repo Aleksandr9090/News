@@ -52,7 +52,7 @@ final class FavoriteListViewController: UIViewController {
     }
     
     private func getData() {
-        StorageManager.shared.fetchData { result in
+        StorageManager.shared.fetchFavoriteNews { result in
             switch result {
             case .success(let newsArray):
                 self.news = newsArray

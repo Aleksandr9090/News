@@ -34,7 +34,7 @@ public final class StorageManager {
     }
     
     // MARK: - PublicMethods
-    func fetchData(completion: (Result<[FavoriteNews], Error>) -> Void) {
+    func fetchFavoriteNews(completion: (Result<[FavoriteNews], Error>) -> Void) {
         let fetchRequest = FavoriteNews.fetchRequest()
         do {
             let favoriteNewsArray = try viewContext.fetch(fetchRequest)
