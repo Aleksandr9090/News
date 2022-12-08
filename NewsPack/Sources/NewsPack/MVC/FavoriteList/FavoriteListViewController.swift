@@ -17,6 +17,7 @@ class FavoriteListViewController: UIViewController {
     
     private var news: [FavoriteNews] = []
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +35,7 @@ class FavoriteListViewController: UIViewController {
         tableView.reloadData()
     }
 
-    // MARK: - Private Methods
+    // MARK: - PrivateMethods
     private func configure() {
         view.backgroundColor = .white
         title = "Favorite News"

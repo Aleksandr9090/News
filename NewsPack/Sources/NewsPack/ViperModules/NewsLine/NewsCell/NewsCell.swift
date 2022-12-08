@@ -35,20 +35,20 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         return activityIndicator
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         return label
     }()
     
-    private lazy var dateLabel: UILabel = {
+    private var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         return label
     }()
     
-    private lazy var newsImageView: UIImageView = {
+    private var newsImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +57,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         return image
     }()
     
+    // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
@@ -109,7 +110,7 @@ class NewsCell: UITableViewCell, CellModelRepresentable {
         }
     }
     
-    // MARK: - Private Methods
+    // MARK: - PrivateMethods
     private func updateView(){
         guard let viewModel = viewModel as? NewsCellViewModel else { return }
         nameLabel.text = viewModel.newsTitle

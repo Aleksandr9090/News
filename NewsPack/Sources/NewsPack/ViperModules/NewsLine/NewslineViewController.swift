@@ -37,6 +37,7 @@ class NewslineViewController: UIViewController {
         return activityIndicator
     }()
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,7 +58,7 @@ class NewslineViewController: UIViewController {
         tableView.reloadData()
     }
 
-    // MARK: - Private Methods
+    // MARK: - PrivateMethods
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCellViewModel.cellIdentifier)

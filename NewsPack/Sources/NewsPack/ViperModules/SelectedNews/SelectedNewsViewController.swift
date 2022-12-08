@@ -35,7 +35,7 @@ class SelectedNewsViewController: UIViewController {
         alpha: 1
     )
         
-    private lazy var newsImage: UIImageView = {
+    private var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
         newsImage.layer.cornerRadius = newsImage.frame.height / 2
@@ -43,21 +43,21 @@ class SelectedNewsViewController: UIViewController {
         return newsImage
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.font = .systemFont(ofSize: 18, weight: .bold)
         nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
-    private lazy var contentLabel: UILabel = {
+    private var contentLabel: UILabel = {
         let contentLabel = UILabel()
         contentLabel.font = .systemFont(ofSize: 14)
         contentLabel.numberOfLines = 0
         return contentLabel
     }()
     
-    private lazy var authorLabel: UILabel = {
+    private var authorLabel: UILabel = {
         let authorLabel = UILabel()
         authorLabel.font = .systemFont(ofSize: 14)
         authorLabel.numberOfLines = 0
@@ -65,6 +65,7 @@ class SelectedNewsViewController: UIViewController {
         return authorLabel
     }()
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,6 +82,7 @@ class SelectedNewsViewController: UIViewController {
         layout()
     }
     
+    // MARK: - PrivateMethods
     private func layout() {
         view.addSubview(newsImage)
         newsImage.snp.makeConstraints { make in
@@ -113,7 +115,7 @@ class SelectedNewsViewController: UIViewController {
         }
     }
     
-    @objc func addButtonTapped() {
+    @objc private func addButtonTapped() {
         presenter?.saveNewsButtonPressed()
         showAlert()
     }

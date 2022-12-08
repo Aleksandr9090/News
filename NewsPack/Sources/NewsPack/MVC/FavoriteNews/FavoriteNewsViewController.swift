@@ -58,6 +58,7 @@ class FavoriteNewsViewController: UIViewController {
         return authorLabel
     }()
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,13 +66,13 @@ class FavoriteNewsViewController: UIViewController {
         layout()
     }
     
-    @objc func deleteButtonTapped() {
+    // MARK: - PrivateMethods
+    @objc private func deleteButtonTapped() {
         StorageManager.shared.delete(favoriteNews)
         delegate?.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - Private Methods
     private func configure() {
         nameLabel.text = favoriteNews?.title
         contentLabel.text = favoriteNews?.content

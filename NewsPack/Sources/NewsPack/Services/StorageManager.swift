@@ -15,7 +15,7 @@ public class StorageManager {
     
     private let viewContext: NSManagedObjectContext
     
-    // MARK: - Core Data stack
+    // MARK: - CoreDataStack
     public let persistentContainer: NSPersistentContainer = {
         guard let modelURL = Bundle.module.url(forResource: "FavoriteNews", withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: modelURL) else { return NSPersistentContainer() }
@@ -33,7 +33,7 @@ public class StorageManager {
         viewContext = persistentContainer.viewContext
     }
     
-    // MARK: - CRUD
+    // MARK: - PublicMethods
     func fetchData(completion: (Result<[FavoriteNews], Error>) -> Void) {
         let fetchRequest = FavoriteNews.fetchRequest()
         do {
@@ -63,7 +63,7 @@ public class StorageManager {
         saveContext()
     }
 
-    // MARK: - Core Data Saving support
+    // MARK: - CoreDataSavingSupport
     public func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

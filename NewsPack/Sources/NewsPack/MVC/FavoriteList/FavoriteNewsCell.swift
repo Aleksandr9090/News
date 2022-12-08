@@ -51,6 +51,7 @@ class FavoriteNewsCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -73,6 +74,7 @@ class FavoriteNewsCell: UITableViewCell {
         nameLabelAddSubview()
     }
     
+    // MARK: - PublicMethods
     func configureCell(with news: FavoriteNews) {
         nameLabel.text = news.title
         dateLabel.text = news.date

@@ -25,6 +25,7 @@ public class CategoriesViewController: UIViewController {
     
     private var categories: [String] = []
     
+    // MARK: - LifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +46,7 @@ public class CategoriesViewController: UIViewController {
         tableView.reloadData()
     }
     
-    // MARK: - Private methods
+    // MARK: - PrivateMethods
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
