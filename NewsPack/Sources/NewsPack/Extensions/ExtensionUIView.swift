@@ -8,7 +8,10 @@
 import UIKit
 
 extension UIView {
-    func addVerticalGradientLayer(topColor: UIColor, bottomColor: UIColor) {
+    func addVerticalGradientLayer(topColor: UIColor?, bottomColor: UIColor?) {
+        guard let topColor = topColor,
+              let bottomColor = bottomColor else { return }
+
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         gradient.colors = [topColor.cgColor, bottomColor.cgColor]

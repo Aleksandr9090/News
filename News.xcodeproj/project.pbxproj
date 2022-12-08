@@ -84,16 +84,9 @@
 				1FFE1F8E2929698D0058C983 /* AppDelegate.swift */,
 				1FFE1F902929698D0058C983 /* SceneDelegate.swift */,
 				1FFE1F9F292969900058C983 /* Info.plist */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		1F7217092938AE7000CD30D0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
 				1FFE1F9A292969900058C983 /* Assets.xcassets */,
 			);
-			path = Resources;
+			path = App;
 			sourceTree = "<group>";
 		};
 		1FFE1F822929698D0058C983 = {
@@ -120,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				1F7217082938AD9300CD30D0 /* App */,
-				1F7217092938AE7000CD30D0 /* Resources */,
 			);
 			path = News;
 			sourceTree = "<group>";

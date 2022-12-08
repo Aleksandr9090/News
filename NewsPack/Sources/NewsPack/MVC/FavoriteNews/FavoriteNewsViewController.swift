@@ -13,21 +13,7 @@ final class FavoriteNewsViewController: UIViewController {
     weak var delegate: FavoriteViewControllerDelegate?
         
     var favoriteNews: FavoriteNews?
-    
-    private let primaryColor = UIColor(
-        red: 242/255,
-        green: 242/255,
-        blue: 247/255,
-        alpha: 1
-    )
-    
-    private let secondaryColor = UIColor(
-        red: 220/255,
-        green: 251/255,
-        blue: 255/255,
-        alpha: 1
-    )
-    
+
     private var newsImage: UIImageView = {
         let newsImage = UIImageView()
         newsImage.contentMode = .scaleAspectFit
@@ -78,8 +64,12 @@ final class FavoriteNewsViewController: UIViewController {
         contentLabel.text = favoriteNews?.content
         authorLabel.text = favoriteNews?.author
         
-        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
+        view.addVerticalGradientLayer(
+            topColor: Color.primary.value,
+            bottomColor: Color.secondary.value
+        )
         view.backgroundColor = .white
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Delete",
             style: .plain,

@@ -20,20 +20,6 @@ protocol SelectedNewsViewOutputProtocol {
 final class SelectedNewsViewController: UIViewController {
         
     var presenter: SelectedNewsViewOutputProtocol?
-    
-    private let primaryColor = UIColor(
-        red: 242/255,
-        green: 242/255,
-        blue: 247/255,
-        alpha: 1
-    )
-    
-    private let secondaryColor = UIColor(
-        red: 220/255,
-        green: 251/255,
-        blue: 255/255,
-        alpha: 1
-    )
         
     private var newsImage: UIImageView = {
         let newsImage = UIImageView()
@@ -125,7 +111,10 @@ final class SelectedNewsViewController: UIViewController {
     }
     
     private func configure() {
-        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
+        view.addVerticalGradientLayer(
+            topColor: Color.primary.value,
+            bottomColor: Color.secondary.value
+        )
         view.backgroundColor = .white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
