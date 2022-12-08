@@ -19,9 +19,15 @@ final class NewslineInteractor: NewslineInteractorInputProtocol {
     weak var presenter: NewslineInteractorOutputProtocol?
     
     func fetchNewsline(with categoryUrl: String) {
-        NetworkManager.shared.fetchData(from: categoryUrl) { [weak self] newsPage in
-            let newslineData = NewslineViewModel(news: newsPage.data)
-            self?.presenter?.newslineDidRecive(with: newslineData)
+        NetworkManager.shared.fetchNewsPage(from: categoryUrl) { [weak self] result in
+            switch result {
+            case .success(let newsPage):
+                let newslineData = NewslineViewModel(news: newsPage.data)
+                self?.presenter?.newslineDidRecive(with: newslineData)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
+
 }
