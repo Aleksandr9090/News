@@ -12,7 +12,7 @@ protocol CategoriesRouterInputProtocol {
     func openFavoriteListViewController()
 }
 
-class CategoriesRouter: CategoriesRouterInputProtocol {
+final class CategoriesRouter: CategoriesRouterInputProtocol {
     weak var viewController: CategoriesViewController?
     
     func openFavoriteListViewController() {

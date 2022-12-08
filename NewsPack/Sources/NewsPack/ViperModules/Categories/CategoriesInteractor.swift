@@ -15,7 +15,7 @@ protocol CategoriesInteractorOutputProtocol: AnyObject {
     func receiveCategories(_ categories: [String])
 }
 
-class CategoriesInteractor: CategoriesInteractorInputProtocol {
+final class CategoriesInteractor: CategoriesInteractorInputProtocol {
     weak var presenter: CategoriesInteractorOutputProtocol?
     
     func getCategories() {

@@ -17,7 +17,7 @@ protocol SelectedNewsViewOutputProtocol {
     func saveNewsButtonPressed()
 }
 
-class SelectedNewsViewController: UIViewController {
+final class SelectedNewsViewController: UIViewController {
         
     var presenter: SelectedNewsViewOutputProtocol?
     

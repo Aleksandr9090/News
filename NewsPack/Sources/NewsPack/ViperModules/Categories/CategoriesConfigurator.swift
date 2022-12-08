@@ -11,7 +11,7 @@ protocol CategoriesConfiguratorInputProtocol {
     func configure(withView view: CategoriesViewController)
 }
 
-class CategoriesConfigurator: CategoriesConfiguratorInputProtocol {
+final class CategoriesConfigurator: CategoriesConfiguratorInputProtocol {
     func configure(withView view: CategoriesViewController) {
         let interactor = CategoriesInteractor()
         let router = CategoriesRouter()

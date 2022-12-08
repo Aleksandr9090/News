@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FavoriteNewsCell: UITableViewCell {
+final class FavoriteNewsCell: UITableViewCell {
     
     static let identifier = "favoriteCell"
     

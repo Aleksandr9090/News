@@ -16,7 +16,7 @@ protocol SelectedNewsInteractorOutputProtocol: AnyObject {
     func receiveSelectedNewsData(with imageData: Data?)
 }
 
-class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
+final class SelectedNewsInteractor: SelectedNewsInteractorInputProtocol {
     weak var presenter: SelectedNewsInteractorOutputProtocol?
     
     func saveSelectedNews(news: News) {

@@ -17,7 +17,7 @@ protocol CategoriesViewOutputProtocol {
     func favoriteButtonPressed()
 }
 
-public class CategoriesViewController: UIViewController {
+public final class CategoriesViewController: UIViewController {
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
 
     var presenter: CategoriesViewOutputProtocol?

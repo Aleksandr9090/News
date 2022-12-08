@@ -15,7 +15,7 @@ protocol NewslineInteractorOutputProtocol: AnyObject {
     func newslineDidRecive(with newslineData: NewslineViewModel?)
 }
 
-class NewslineInteractor: NewslineInteractorInputProtocol {
+final class NewslineInteractor: NewslineInteractorInputProtocol {
     weak var presenter: NewslineInteractorOutputProtocol?
     
     func fetchNewsline(with categoryUrl: String) {

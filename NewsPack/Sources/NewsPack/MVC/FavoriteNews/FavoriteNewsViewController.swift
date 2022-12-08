@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FavoriteNewsViewController: UIViewController {
+final class FavoriteNewsViewController: UIViewController {
     
     weak var delegate: FavoriteViewControllerDelegate?
         

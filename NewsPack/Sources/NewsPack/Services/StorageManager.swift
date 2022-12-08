@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-public class StorageManager {
+public final class StorageManager {
     
     public static let shared = StorageManager()
     

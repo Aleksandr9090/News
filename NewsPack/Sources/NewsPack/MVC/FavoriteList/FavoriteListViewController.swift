@@ -11,7 +11,7 @@ protocol FavoriteViewControllerDelegate: AnyObject {
     func reloadData()
 }
 
-class FavoriteListViewController: UIViewController {
+final class FavoriteListViewController: UIViewController {
     
     private let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     

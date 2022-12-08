@@ -11,7 +11,7 @@ protocol NewslineRouterInputProtocol {
     func openSelectedNewsViewController(with news: News)
 }
 
-class NewslineRouter: NewslineRouterInputProtocol {
+final class NewslineRouter: NewslineRouterInputProtocol {
     weak var viewController: NewslineViewController?
     
     func openSelectedNewsViewController(with news: News) {

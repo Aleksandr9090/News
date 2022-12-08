@@ -14,7 +14,7 @@ struct SelectedNewsViewModel {
     let author: String
 }
 
-class SelectedNewsPresenter {
+final class SelectedNewsPresenter {
     weak var view: SelectedNewsViewInputProtocol?
     
     private let interactor: SelectedNewsInteractorInputProtocol

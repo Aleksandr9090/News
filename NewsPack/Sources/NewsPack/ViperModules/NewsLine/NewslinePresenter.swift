@@ -11,7 +11,7 @@ struct NewslineViewModel {
     let news: [News]?
 }
 
-class NewslinePresenter {
+final class NewslinePresenter {
     weak var view: NewslineViewInputProtocol?
     
     private let interactor: NewslineInteractorInputProtocol

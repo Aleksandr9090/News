@@ -17,7 +17,7 @@ protocol NewslineViewOutputProtocol {
     func didTapCell(at indexPath: IndexPath)
 }
 
-class NewslineViewController: UIViewController {
+final class NewslineViewController: UIViewController {
     
     var categoryUrl: String?
     var presenter: NewslineViewOutputProtocol?

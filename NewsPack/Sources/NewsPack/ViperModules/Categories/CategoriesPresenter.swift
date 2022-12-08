@@ -11,7 +11,7 @@ struct CategoriesViewModel {
     let categories: [String]
 }
 
-class CategoriesPresenter {
+final class CategoriesPresenter {
     weak var view: CategoriesViewInputProtocol?
     
     private let interactor: CategoriesInteractorInputProtocol

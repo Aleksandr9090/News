@@ -21,7 +21,7 @@ protocol NewsSectionViewModelProtocol {
     func numberOfRows() -> Int
 }
 
-class NewsCellViewModel: NewsCellViewModelProtocol {
+final class NewsCellViewModel: NewsCellViewModelProtocol {
     static var cellIdentifier: String {
         "newsCell"
     }
@@ -49,7 +49,7 @@ class NewsCellViewModel: NewsCellViewModelProtocol {
     }
 }
 
-class NewsSectionViewModel: NewsSectionViewModelProtocol {
+final class NewsSectionViewModel: NewsSectionViewModelProtocol {
     var rows: [NewsCellViewModelProtocol] = []
     
     func numberOfRows() -> Int {

@@ -12,7 +12,7 @@ protocol CellModelRepresentable {
     var viewModel: NewsCellViewModelProtocol? { get }
 }
 
-class NewsCell: UITableViewCell, CellModelRepresentable {
+final class NewsCell: UITableViewCell, CellModelRepresentable {
     var viewModel: NewsCellViewModelProtocol? {
         didSet {
             updateView()

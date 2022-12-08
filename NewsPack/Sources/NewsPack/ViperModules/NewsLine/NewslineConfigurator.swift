@@ -11,7 +11,7 @@ protocol NewslineConfiguratorInputProtocol {
     func configure( with viewController: NewslineViewController, and categoryUrl: String)
 }
 
-class NewslineConfigurator: NewslineConfiguratorInputProtocol {
+final class NewslineConfigurator: NewslineConfiguratorInputProtocol {
     func configure(with viewController: NewslineViewController, and categoryUrl: String) {
         let interactor = NewslineInteractor()
         let router = NewslineRouter()
