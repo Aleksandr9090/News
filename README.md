@@ -10,7 +10,7 @@ VIPER<br>SnapKit<br>Core Data<br>Swift Package Manager<br>URLSession
 </h4>
 
 
-![](https://github.com/Aleksandr9090/News/blob/main/videoForGIT.gif)
+![](https://github.com/Aleksandr9090/News/blob/main/gifForGIT.gif)
 
 ## Installation:
 - Clone repository
