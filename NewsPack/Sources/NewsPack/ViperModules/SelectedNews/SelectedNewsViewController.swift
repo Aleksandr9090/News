@@ -125,11 +125,6 @@ final class SelectedNewsViewController: UIViewController {
         )
     }
     
-    @objc private func addButtonTapped() {
-        presenter?.saveNewsButtonPressed()
-        showAlert()
-    }
-    
     private func showAlert() {
         let alert = UIAlertController(
             title: "News Saved",
@@ -140,6 +135,11 @@ final class SelectedNewsViewController: UIViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true)
+    }
+    
+    @objc private func addButtonTapped() {
+        presenter?.saveNewsButtonPressed()
+        showAlert()
     }
 }
 

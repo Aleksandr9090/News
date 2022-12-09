@@ -7,10 +7,12 @@
 
 protocol NewsCellViewModelProtocol {
     static var cellIdentifier: String { get }
+    
     var cellHeight: Double { get }
     var newsTitle: String { get }
     var newsDate: String { get }
     var imageUrl: String { get }
+    
     init(news: News)
 }
 

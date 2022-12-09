@@ -75,6 +75,7 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         activityIndicatorAddSubview()
         newsImageViewAddSubview()
         nameLabelAddSubview()
@@ -154,6 +155,7 @@ final class NewsCell: UITableViewCell, CellModelRepresentable {
             completion(.success(cacheImage))
             return
         }
+        
         NetworkManager.shared.fetchImage(from: url) { result in
             switch result {
             case .success(let data):

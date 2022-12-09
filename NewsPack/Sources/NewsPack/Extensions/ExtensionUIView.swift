@@ -19,6 +19,3 @@ extension UIView {
         layer.insertSublayer(gradient, at: 0)
     }
 }
-
-
-
