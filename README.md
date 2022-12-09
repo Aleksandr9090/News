@@ -12,8 +12,6 @@ VIPER<br>SnapKit<br>Core Data<br>Swift Package Manager<br>URLSession
 
 ![](https://github.com/Aleksandr9090/News/blob/main/videoForGIT.gif)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nvPgcUc9otY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Installation:
 - Clone repository
 - Open News.xcodeproj 
