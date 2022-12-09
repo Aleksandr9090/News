@@ -78,22 +78,10 @@
 			path = News/Frameworks;
 			sourceTree = "<group>";
 		};
-		1F7217082938AD9300CD30D0 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				1FFE1F8E2929698D0058C983 /* AppDelegate.swift */,
-				1FFE1F902929698D0058C983 /* SceneDelegate.swift */,
-				1FFE1F9F292969900058C983 /* Info.plist */,
-				1FFE1F9A292969900058C983 /* Assets.xcassets */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
 		1FFE1F822929698D0058C983 = {
 			isa = PBXGroup;
 			children = (
 				1FFE1F8D2929698D0058C983 /* News */,
-				1FFE1F9C292969900058C983 /* LaunchScreen.storyboard */,
 				1F11758F293F837A0068558E /* Frameworks */,
 				1FFE1F8C2929698D0058C983 /* Products */,
 			);
@@ -112,7 +100,11 @@
 		1FFE1F8D2929698D0058C983 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				1F7217082938AD9300CD30D0 /* App */,
+				1FFE1F8E2929698D0058C983 /* AppDelegate.swift */,
+				1FFE1F902929698D0058C983 /* SceneDelegate.swift */,
+				1FFE1F9F292969900058C983 /* Info.plist */,
+				1FFE1F9A292969900058C983 /* Assets.xcassets */,
+				1FFE1F9C292969900058C983 /* LaunchScreen.storyboard */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -423,7 +415,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6T3C77J6JN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = News/App/Info.plist;
+				INFOPLIST_FILE = News/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -452,7 +444,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6T3C77J6JN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = News/App/Info.plist;
+				INFOPLIST_FILE = News/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
